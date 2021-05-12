@@ -1,0 +1,7 @@
+s:423:"<p>Els permisos són les definicions de capacitats. Hi ha 4 opcions:</p>
+
+<ul><li>No definit</li>
+<li>Permet - S'atorga el permís per a aquesta capacitat</li>
+<li>Impedeix - Se suprimeix el permís per a aquesta capacitat, encara que s'hagi atorgat el permís en un context superior</li>
+<li>Prohibeix - Es denega completament el permís i no es poden definir excepcions en un context inferior (més específic)</li>
+</ul>";

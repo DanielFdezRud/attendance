@@ -1,0 +1,6 @@
+a:4:{s:18:"allowedsourceslist";s:14:"Fonts permeses";s:22:"allowedsourceslistdesc";s:422:"Una llista d'URL des de la qual els usuaris poden incrustar contingut H5P. Si no se n'especifica cap, tots els URL romandran com a enllaços i no es mostraran com a contingut H5P incrustat.
+
+«[id]» és un marcador per a l'identificador (ID) de contingut H5P a la font externa.
+Per exemple:
+— H5P.com: https://[xxxxxx].h5p.com/content/[id]
+— WordPress: http://myserver/wp-admin/admin-ajax.php?action=h5p_embed&id=[id]";s:10:"filtername";s:12:"Mostra l'H5P";s:16:"privacy:metadata";s:68:"El filtre de reproducció de l'H5P no emmagatzema cap dada personal.";}

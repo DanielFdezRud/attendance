@@ -1,0 +1,6 @@
+s:305:"<p>Podeu cercar diverses paraules de cop i refinar la vostra cerca de la manera següent:</p>
+
+<ul><li>paraula - troba qualsevol coincidència d'aquesta paraula al text</li>
+<li>+paraula - només troba coincidències exactes</li>
+<li>-paraula - exclou els resultats que contenen aquesta paraula</li>
+</ul>";

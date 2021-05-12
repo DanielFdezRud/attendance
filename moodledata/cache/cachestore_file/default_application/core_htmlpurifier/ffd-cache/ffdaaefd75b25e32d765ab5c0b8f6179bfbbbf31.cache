@@ -1,0 +1,11 @@
+s:1020:"<p>El mòdul de fitxer permet a un professor proporcionar un fitxer com un recurs del curs. Sempre que sigui possible, es mostrarà el fitxer a la interfície de curs; en cas contrari, es demanarà als estudiants que el baixin. El fitxer pot incloure altres fitxers de suport; per exemple, una pàgina d'HTML pot tenir imatges incrustades.</p>
+
+<p>Teniu en compte que els estudiants necessiten tenir el programari adequat als seus equips per tal d'obrir el fitxer.</p>
+
+<p>Un fitxer pot servir per:</p>
+
+<ul><li>Compartir presentacions utilitzades a classe.</li>
+<li>Incloure un minilloc web com un recurs dins del curs</li>
+<li>Proporcionar plantilles o esborranys de documents de certes aplicacions (per exemple, .psd de Photoshop) de manera que els estudiants puguin editar-les i trametre-les perquè siguin avaluades.</li>
+</ul><div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/resource/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

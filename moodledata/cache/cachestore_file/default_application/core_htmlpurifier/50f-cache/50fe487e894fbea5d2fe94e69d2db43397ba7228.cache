@@ -1,0 +1,9 @@
+s:731:"<p>Aquesta funció permet crear múltiples sessions d'una sola vegada.</p>
+
+<ul><li><strong>Data inici sessió</strong>: Seleccioneu la data d'inici del vostre curs (el primer dia de classe)
+
+<ul><li><strong>Data final sessió</strong>: Seleccioneu l'últim dia de classe (l'últim dia que voleu prendre l'assistència).</li>
+<li><strong>Dies de les sessions</strong>: Seleccioneu els dies de la setmana en què tindran lloc les classes (per exemple, Dilluns/Dimecres/Divendres).</li>
+<li><strong>Freqüència</strong>: Això permet un ajust de la freqüència. Si la vostra classe té lloc un cop per setmana, seleccioneu 1; si té lloc cada dues setmanes, seleccioneu 2; cada 3 setmanes, seleccioneu 3, etc.</li>
+</ul></li>
+</ul>";

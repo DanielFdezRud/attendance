@@ -1,0 +1,10 @@
+s:1627:"<p>Les eines externes permeten als usuaris de Moodle interaccionar de forma fluida amb recursos d'aprenentatge allotjats de manera remota. Mitjançant un protocol de llançament especial, l'eina remota té accés a informació general sobre l'usuari que l'executa; per exemple, el nom de la institució, l'ID del curs, l'ID de l'usuari, i altres informacions com el nom de l'usuari o l'adreça de correu electrònic.</p>
+
+<p>Els tipus d'eines enumerades en aquesta pàgina es divideixen en tres categories:</p>
+
+<ul><li><strong>Activa</strong> —Aquests proveïdors d'eines han estat aprovats i configurats per un administrador. Es poden utilitzar des de dins de qualsevol curs en aquesta instància de Moodle. Si s'introdueixen una clau de consumidor i una contrasenya secreta compartida, s'estableix una relació de confiança entre aquesta instància de Moodle i l'eina remota, de manera que es proporciona un canal de comunicació segur.</li>
+<li><strong>Pendent</strong> —Aquests proveïdors d'eines han entrat a través de la importació d'un paquet, però no han estat configurats per un administrador.
+Amb tot, els professors poden emprar eines d'aquests proveïdors si tenen una clau de consumidor i una contrasenya secreta compartida, o si no en cal cap.</li>
+<li><strong>Rebutjada</strong> —Aquests proveïdors d'eines han estat marcats com aquells que un administrador no té intenció de posar a la disposició de tota la instància de Moodle.
+Amb tot, els professors poden emprar eines d'aquests proveïdors si tenen una clau de consumidor i una contrasenya secreta compartida, o si no en cal cap.</li>
+</ul>";

@@ -1,0 +1,8 @@
+s:928:"<p>El mòdul de carpeta permet que el professor mostri un nombre de fitxers relacionats dins una sola carpeta, la qual cosa redueix el desplaçament per la pàgina del curs. Un fitxer comprimit es pot carregar i descomprimir per visualitzar-lo, o es pot crear una carpeta buida i enviar-hi els fitxers.</p>
+
+<p>Una carpeta pot utilitzar-se
+* Per a una sèrie de fitxers d'un tema; per exemple, un conjunt d'exàmens d'anys anteriors en format .pdf o una col·lecció de fitxers d'imatge, perquè els alumnes els emprin en els seus projectes
+* Per oferir un espai compartit de càrrega de fitxers per als professors en la pàgina del curs (en aquest cas, s'ha de mantenir la carpeta oculta a fi que només els professors la puguin veure)</p>
+
+<div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/folder/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

@@ -1,0 +1,11 @@
+s:1507:"<p>Les eines externes permeten als usuaris de Moodle interactuar amb recursos d'aprenentatge i activitats d'altres llocs web. Per exemple, una eina externa pot proporcionar accés  a un tipus d'activitat nou o a materials d'aprenentatge d'un editor.</p>
+
+<p>Per configurar una instància d'eina externa d'un proveïdor d'eines cal que admeti LTI (interoperabilitat d'eines d'aprenentatge). Si trobeu un proveïdor d'eines que admeti LTI, us proporcionarà instruccions per configurar l'eina externa. A més a més, els tipus d'eina configurats per un administrador de lloc també estaran disponibles per al seu ús.</p>
+
+<p>Les eines externes diferiran en els recursos URL en alguns aspectes:
+* <strong>Informació de context</strong> — Les eines externes tenen accés a informació sobre l'usuari que llança l'eina, com ara la institució, el curs, el nom i altres informacions.</p>
+
+<ul><li><p><strong>Integració avançada</strong> — Les eines externes permeten llegir, actualitzar i suprimir qualificacions associades amb l'activitat de què es tracti. Es planegen més punts d'integració en versions futures.</p></li>
+<li><p><strong>Seguretat</strong> — Les configuracions de les eines externes creen relacions de confiança entre Moodle i  l'eina; permeten una comunicació segura entre aquests.</p></li>
+</ul><div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/lti/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

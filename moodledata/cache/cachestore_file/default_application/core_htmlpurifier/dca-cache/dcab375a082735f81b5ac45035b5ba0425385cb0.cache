@@ -1,0 +1,6 @@
+s:384:"<p>Mostra estadístiques de les sessions on s'ha registrat l'assistència:</p>
+
+<ul><li><strong>Sessions</strong>: nombre de sessions ja registrades.</li>
+    <li><strong>Points</strong>: punts atorgats en funció de les sessions registrades.</li>
+    <li><strong>Percentage</strong>: percentatge de punts atorgats al màxim de punts possibles per a totes les sessions.</li>
+    </ul>";

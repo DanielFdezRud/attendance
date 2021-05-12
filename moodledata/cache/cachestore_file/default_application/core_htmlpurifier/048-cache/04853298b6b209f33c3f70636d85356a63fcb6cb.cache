@@ -1,0 +1,14 @@
+s:1627:"<p>El mòdul d'activitat de base de dades permet als participants crear, mantenir i cercar una col·lecció d'entrades (p. ex., registres). El professors defineix l'estructura de les entrades com un nombre de camps. Els tipus de camps inclouen caselles de selecció, botons d'opció, menús desplegables, àrees de text, URL, imatges i fitxers carregats.</p>
+
+<p>La disposició visual de la informació quan es s'enumeren, es visualitzen o s'editen entrades de la base de dades pot controlar-se mitjançant plantilles. Les activitats de base de dades poden compartir-se entre cursos com a predefinides i un docent també pot importar i exportar les entrades de la base de dades.</p>
+
+<p>Si el filtre d'enllaços automàtics de la base de dades està activat, qualsevol entrada s'enllaçarà automàticament quan les paraules o frases apareguin dins el curs.</p>
+
+<p>El professor pot permetre comentaris per a les entrades. Les entrades també poden ser valorades pels professors o els estudiants (avaluació entre iguals). Les valoracions poden agregar-se per formar una qualificació final que es registri al butlletí de qualificacions.</p>
+
+<p>Les activitats de base de dades tenen moltes aplicacions, com ara:
+* Una col·lecció col·laborativa d'enllaços web, llibres, ressenyes de llibres, referències de revistes, etc.
+* Per visualitzar fotos, pòsters, llocs web o poemes creats pels estudiants i per a la revisió entre iguals</p>
+
+<div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/data/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

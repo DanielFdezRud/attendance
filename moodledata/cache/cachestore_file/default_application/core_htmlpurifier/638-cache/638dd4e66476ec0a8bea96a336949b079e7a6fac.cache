@@ -1,0 +1,8 @@
+s:839:"<p>Un paquet de contingut IMS és un conjunt de fitxers que s'empaqueten d'acord amb una norma acordada perquè puguin ser reutilitzats en diferents sistemes. El mòdul de paquet de contingut IMS habilita que aquest tipus de paquets de continguts es carreguin com un fitxer zip i s'afegeixin a un curs com un recurs.</p>
+
+<p>El contingut es presenta habitualment en diverses pàgines, amb navegació entre les pàgines. Hi ha diverses opcions per mostrar el contingut en una finestra emergent, amb un menú de navegació o botons, etc.</p>
+
+<p>Un paquet de contingut IMS es pot utilitzar per a la presentació de contingut multimèdia i animacions.</p>
+
+<div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/imscp/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

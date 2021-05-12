@@ -1,0 +1,8 @@
+s:1024:"<p>El mòdul URL permet al professor subministrar un enllaç web com a recurs docent. Es pot enllaçar a qualsevol cosa que estigui disponible lliurement en línia, com ara documents o imatges. L'URL no ha de ser la pàgina principal d'un lloc web; podeu copiar i enganxar els URL de pàgines particulars, o bé podeu emprar el selector de fitxers per escollir un enllaç a un repositori com Flickr, YouTube o Wikimedia (en funció de quins repositoris tingueu habilitats al vostre lloc Moodle).</p>
+
+<p>Hi ha certes opcions de visualització per a l'URL, com ara incrustat o en una nova finestra, i opcions avançades per passar informació —com ara el nom de l'estudiant— a l'URL, si és necessari.</p>
+
+<p>Tingueu en compte que els URL també es poden afegir a qualsevol altre recurs o activitat a través de l'editor de textos.</p>
+
+<div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/url/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

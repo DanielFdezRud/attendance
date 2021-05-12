@@ -1,0 +1,21 @@
+a:26:{s:8:"encoding";s:23:"Codificació del fitxer";s:13:"expiredaction";s:37:"Acció de venciment de la inscripció";s:18:"expiredaction_help";s:200:"Seleccioneu l'acció que es durà a terme quan venci la inscripció de l'usuari. Teniu en compte que alguns paràmetres i dades d'usuari es purguen del curs durant la cancel·lació de la inscripció.";s:14:"filelockedmail";s:302:"El fitxer de text que esteu utilitzant per a les inscripcions basades en fitxer ({$a}) no pot ser esborrat pel procés cron. Això significa que no té permisos sobre aquest fitxer. Modifiqueu els permisos de forma que Moodle pugui esborrar el fitxer; en cas contrari, es processarà de forma repetida.";s:21:"filelockedmailsubject";s:32:"Error greu: Fitxer d'inscripció";s:15:"flatfile:manage";s:51:"Gestiona les inscripcions d'usuari de forma manual.";s:16:"flatfile:unenrol";s:61:"Cancel·la la inscripció d'usuaris del curs de forma manual.";s:18:"flatfileenrolments";s:26:"Flat file (CSV) enrolments";s:12:"flatfilesync";s:52:"Fitxer pla de la sincronització de les inscripcions";s:8:"location";s:15:"Camí al fitxer";s:13:"location_desc";s:121:"Especifica el camí complet del fitxer d'inscripció. El fitxer s'esborra de forma automàtica després del processament.";s:11:"notifyadmin";s:26:"Notifica a l'administrador";s:14:"notifyenrolled";s:30:"Notifica als usuaris inscrits.";s:14:"notifyenroller";s:52:"Notifica a l'usuari responsable de les inscripcions.";s:34:"messageprovider:flatfile_enrolment";s:51:"Missatges d'inscripcions mitjançant fitxer de text";s:7:"mapping";s:45:"S'està fent el mapa de rols en un fitxer pla";s:10:"pluginname";s:24:"Fitxer de text net (CSV)";s:15:"pluginname_desc";s:1032:"Aquest mètode comprovarà de forma periòdica i processarà un fitxer de text en la localització que heu especificat.
+El fitxer és un fitxer de text separat per comes que assumeix que teniu sis camps per línia:
+<pre class="informationbox">
+* operació, rol, ID(usuari), ID(curs) [, data d'inici , data caducitat]
+ on:
+* operació = add | del (afegeix | suprimeix)
+* rol = student | teacher | teacheredit (estudiant | professor | professor editor)
+ * ID(usuari) = Identificació de l'usuari en la taula NB no id
+* ID(curs) = Identificació del curs en la taula NB no id
+* data d'inici = data d'inici de la inscripció (en segons des de l'origen de l'hora UNIX) - opcional
+* data caducitat = data de caducitat de la inscripció (en segons des de l'origen de l'hora UNIX) - opcional
+</pre>
+Tindrà un aspecte semblant a aquest:
+<pre class="informationbox">
+add, student, 5, CF101
+add, teacher, 6, CF101
+add, teacheredit, 7, CF101
+del, student, 8, CF101
+del, student, 17, CF101
+add, student, 21, CF101, 1091115000, 1091215000
+</pre>";s:31:"privacy:metadata:enrol_flatfile";s:119:"The Flat file (CSV) enrolment plugin may store personal data relating to future enrolments in the enrol_flatfile table.";s:38:"privacy:metadata:enrol_flatfile:action";s:47:"The enrolment action expected on the given date";s:40:"privacy:metadata:enrol_flatfile:courseid";s:44:"The course ID to which the enrolment relates";s:38:"privacy:metadata:enrol_flatfile:roleid";s:47:"The ID of the role to be assigned or unassigned";s:41:"privacy:metadata:enrol_flatfile:timestart";s:34:"The time when the enrolment starts";s:39:"privacy:metadata:enrol_flatfile:timeend";s:32:"The time when the enrolment ends";s:44:"privacy:metadata:enrol_flatfile:timemodified";s:39:"The time when the enrolment is modified";s:38:"privacy:metadata:enrol_flatfile:userid";s:55:"The ID of the user to which the role assignment relates";}

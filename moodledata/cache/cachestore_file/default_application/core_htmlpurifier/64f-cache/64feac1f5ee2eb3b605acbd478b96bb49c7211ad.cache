@@ -1,0 +1,14 @@
+s:406:"<p>Quan s'envia un advertiment a un estudiant, s'agafa el contingut del correu electrònic d'aquest camp. Es poden utilitzar els comodins següents:</p>
+
+<ul><li>%coursename%</li>
+<li>%userfirstname%</li>
+<li>%userlastname%</li>
+<li>%userid%</li>
+<li>%warningpercent%</li>
+<li>%attendancename%</li>
+<li>%cmid%</li>
+<li>%numtakensessions%</li>
+<li>%points%</li>
+<li>%maxpoints%</li>
+<li>%percent%</li>
+</ul>";

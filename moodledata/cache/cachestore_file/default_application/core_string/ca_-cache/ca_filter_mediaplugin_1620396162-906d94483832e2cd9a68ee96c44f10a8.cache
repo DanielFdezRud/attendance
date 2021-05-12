@@ -1,0 +1,3 @@
+a:5:{s:13:"fallbackaudio";s:16:"Enllaç d'àudio";s:13:"fallbackvideo";s:17:"Enllaç de vídeo";s:10:"filtername";s:22:"Connectors multimèdia";s:11:"linktomedia";s:360:"El filtre dels connectors multimèdia troba un enllaç al text que apunta cap al recurs multimèdia i reemplaça l'enllaç amb el codi d'un reproductor multimèdia adequat que pugui reproduir el recurs. També reemplaça les etiquetes <vídeo> i <àudio> amb els reproductors de vídeo i àudio triats.
+
+<a href="{$a}">Gestiona els reproductors multimèdia</a>";s:16:"privacy:metadata";s:72:"El connector de connectors multimèdia no emmagatzema cap dada personal.";}

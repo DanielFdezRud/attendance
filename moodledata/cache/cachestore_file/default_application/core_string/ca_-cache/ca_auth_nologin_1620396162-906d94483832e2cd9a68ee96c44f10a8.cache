@@ -1,0 +1,1 @@
+a:3:{s:23:"auth_nologindescription";s:175:"Connector auxiliar que impedeix que l'usuari iniciï una sessió al sistema i bloca l'enviament de correu a l'usuari. Es pot utilitzar per <em>suspendre</em> comptes d'usuari.";s:10:"pluginname";s:22:"Sense inici de sessió";s:16:"privacy:metadata";s:68:"The No login authentication plugin does not store any personal data.";}

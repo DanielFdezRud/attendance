@@ -1,0 +1,17 @@
+s:1209:"<p>El mòdul de qüestionaris permet al professor crear qüestionaris amb preguntes de diversos tipus, com ara d'opció múltiple, vertader/fals, aparellament, resposta breu i numèriques.</p>
+
+<p>El professor pot permetre múltiples intents del qüestionari, amb les preguntes barrejades o escollides a l'atzar d'entre un banc de preguntes. Es pot establir un límit de temps.</p>
+
+<p>Cada intent es puntua automàticament, amb l'excepció de les preguntes de tipus «resposta oberta», i la nota es registra al llibre de qualificacions.</p>
+
+<p>El professor pot decidir si es mostren als alumnes (i quan) comentaris, retroacció i les respostes correctes.</p>
+
+<p>Els qüestionaris es poden utilitzar:</p>
+
+<ul><li>Com a exàmens del curs.</li>
+<li>Com a minitests després de tasques de lectura, o al final d'un tema.</li>
+<li>Com a examen de repàs si s'utilitzen preguntes de qüestionaris anteriors.</li>
+<li>Per oferir retroacció immediata sobre les capacitats de l'alumne.</li>
+<li>Per a l'autoavaluació.</li>
+</ul><div class="helpdoclink"><a href="https://docs.moodle.org/39/ca/mod/quiz/view" class="helplinkpopup"><i class="icon fa fa-info-circle fa-fw iconhelp icon-pre"></i>Més ajuda</a></div>
+";

@@ -1,0 +1,38 @@
+a:45:{s:13:"accountexists";s:239:"Ja existeix un usuari en aquest lloc amb aquest nom d'usuari. Si aquest és el vostre compte, inicieu la sessió introduint el vostre nom d’usuari i contrasenya i afegiu-lo com a compte enllaçat a través de la pàgina de preferències.";s:22:"auth_oauth2description";s:44:"Autenticació basada en l'estàndard OAuth 2";s:19:"auth_oauth2settings";s:41:"Configuració de l'autenticació OAuth 2.";s:19:"confirmaccountemail";s:816:"Hola, {$a->fullname},
+
+S'ha fet una sol·licitud per enllaçar l'autenticació de {$a->issuername} {$a->linkedemail} al vostre compte al lloc «{$a->sitename}» mitjançant la vostra adreça de correu electrònic.
+
+Per confirmar aquesta sol·licitud i enllaçar aquests accessos, feu clic a aquesta adreça web:
+
+{$a->link}
+
+A la majoria de programes de correu, aquesta adreça hauria d'aparèixer com un enllaç blau on heu de fer clic. Si això no funciona, retalleu l'adreça i enganxeu-la en el camp d'ubicació al capdamunt de la finestra del navegador.
+
+Si necessiteu ajuda, poseu-vos en contacte amb l’administrador del lloc, {$a->admin}
+
+Si no heu fet aquesta sol·licitud, algú altre podria estar intentant posar en risc el vostre compte.
+Poseu-vos en contacte immediatament amb l'administrador del lloc.";s:26:"confirmaccountemailsubject";s:29:"{$a}: confirmació del compte";s:19:"confirmationinvalid";s:164:"L'enllaç de confirmació o és no vàlid o bé ha caducat. Comenceu de nou el procés d'autenticació per tal de generar un correu electrònic de confirmació nou.";s:19:"confirmationpending";s:55:"Aquest compte està pendent del correu de confirmació.";s:23:"confirmlinkedloginemail";s:816:"Hola, {$a->fullname},
+
+S'ha fet una sol·licitud per enllaçar l'autenticació de {$a->issuername} {$a->linkedemail} al vostre compte al lloc «{$a->sitename}» mitjançant la vostra adreça de correu electrònic.
+
+Per confirmar aquesta sol·licitud i enllaçar aquests accessos, feu clic a aquesta adreça web:
+
+{$a->link}
+
+A la majoria de programes de correu, aquesta adreça hauria d'aparèixer com un enllaç blau on heu de fer clic. Si això no funciona, retalleu l'adreça i enganxeu-la en el camp d'ubicació al capdamunt de la finestra del navegador.
+
+Si necessiteu ajuda, poseu-vos en contacte amb l’administrador del lloc, {$a->admin}
+
+Si no heu fet aquesta sol·licitud, algú altre podria estar intentant posar en risc el vostre compte.
+Poseu-vos en contacte immediatament amb l'administrador del lloc.";s:30:"confirmlinkedloginemailsubject";s:48:"{$a}: confirmació d'inici de sessió enllaçada";s:21:"createaccountswarning";s:187:"Aquest connector d'autenticació permet que els usuaris puguin crear comptes al vostre lloc. Podeu habilitar la configuració «authpreventaccountcreation» si utilitzeu aquest connector.";s:20:"createnewlinkedlogin";s:29:"Enllaceu un compte nou ({$a})";s:16:"emailconfirmlink";s:28:"Enllaceu els vostres comptes";s:20:"emailconfirmlinksent";s:454:"<p>S'ha trobat un compte amb aquesta mateixa adreça electrònica que encara no està enllaçat.</p>
+   <p>Els comptes han d'estar enllaçats abans de poder-vos autenticar.</p>
+   <p>S'ha enviat un missatge de correu electrònic a la vostra adreça de correu <b>{$a}</b>.</p>
+   <p>El missatge conté unes instruccions senzilles per enllaçar els vostres comptes.</p>
+   <p>Si teniu algun problema, si us plau, contacteu amb l'administrador del lloc.</p>";s:23:"emailpasswordchangeinfo";s:348:"Hola, {$a->firstname},
+
+Algú (probablement, vós) ha demanat una contrasenya nova per al vostre compte a «{$a->sitename}».
+
+La vostra contrasenya no es pot restablir, perquè utilitzeu el vostre compte per iniciar la sessió en un altre lloc.
+
+Inicieu la sessió com abans, mitjançant l’enllaç de la pàgina d’inici de sessió.
+{$a->admin}";s:30:"emailpasswordchangeinfosubject";s:41:"{$a}: informació de canvi de contrasenya";s:4:"info";s:13:"Compte extern";s:6:"issuer";s:14:"Servei OAuth 2";s:13:"issuernologin";s:57:"Aquest emissor no es pot utilitzar per iniciar la sessió";s:12:"linkedlogins";s:28:"Inicis de sessió enllaçats";s:16:"linkedloginshelp";s:42:"Ajuda amb els inicis de sessió enllaçats";s:25:"loginerror_userincomplete";s:177:"La informació de l'usuari retornada no conté cap nom d'usuari ni cap adreça de correu electrònic. És possible que el servei OAuth 2 estigui configurat de manera incorrecta.";s:21:"loginerror_nouserinfo";s:121:"No s'ha retornat cap informació de l'usuari. És possible que el servei OAuth 2 estigui configurat de manera incorrecta.";s:24:"loginerror_invaliddomain";s:66:"No es permet aquesta adreça de correu electrònic en aquest lloc.";s:31:"loginerror_authenticationfailed";s:37:"El procés d'autenticació ha fallat.";s:31:"loginerror_cannotcreateaccounts";s:63:"No s'ha pogut trobar un compte amb la vostra adreça de correu.";s:18:"noissuersavailable";s:83:"Cap dels serveis OAuth 2 configurats us permet enllaçar comptes d'inici de sessió";s:16:"notloggedindebug";s:49:"Ha fallat l'intent d'inici de sessió. Raó: {$a}";s:18:"notwhileloggedinas";s:99:"Els inicis de sessió enllaçats no es poden gestionar mentre esteu autenticat com un altre usuari.";s:25:"oauth2:managelinkedlogins";s:57:"Gestiona els comptes d'inici de sessió enllaçats propis";s:10:"notenabled";s:55:"El connector d'autenticació OAuth 2 no està habilitat";s:17:"plugindescription";s:271:"Aquest connector d’autenticació mostra una llista dels proveïdors d’identitat configurats a la pàgina d’inici de sessió. El fet de seleccionar un proveïdor d’identitat permet als usuaris iniciar la sessió amb les seves credencials d’un proveïdor OAuth 2.";s:10:"pluginname";s:7:"OAuth 2";s:13:"alreadylinked";s:71:"Aquest compte extern ja està enllaçat a un altre compte d'aquest lloc";s:28:"privacy:metadata:auth_oauth2";s:21:"Autenticació OAuth 2";s:42:"privacy:metadata:auth_oauth2:authsubsystem";s:63:"Aquest connector està connectat al subsistema d'autenticació.";s:41:"privacy:metadata:auth_oauth2:confirmtoken";s:29:"El testimoni de confirmació.";s:48:"privacy:metadata:auth_oauth2:confirmtokenexpires";s:62:"La marca horària de quan caduca el testimoni de confirmació.";s:34:"privacy:metadata:auth_oauth2:email";s:61:"El correu electrònic extern que s’assigna a aquest compte.";s:37:"privacy:metadata:auth_oauth2:issuerid";s:67:"L'ID de l'emissor OAuth 2 per a aquest inici de sessió amb OAuth 2";s:45:"privacy:metadata:auth_oauth2:tableexplanation";s:60:"Comptes OAuth 2 enllaçats amb el compte Moodle d'un usuari.";s:40:"privacy:metadata:auth_oauth2:timecreated";s:85:"La marca horària de quan es va enllaçar el compte a l'inici de sessió amb OAuth 2.";s:41:"privacy:metadata:auth_oauth2:timemodified";s:58:"La marca horària de quan es va modificar aquest registre.";s:35:"privacy:metadata:auth_oauth2:userid";s:83:"L’identificador (ID) del compte d’usuari al qual s’enllaça el login OAuth 2.";s:41:"privacy:metadata:auth_oauth2:usermodified";s:64:"L'identificador (ID) de l'usuari que ha modificat aquest compte.";s:37:"privacy:metadata:auth_oauth2:username";s:53:"El nom d'usuari extern que s'assigna a aquest compte.";}
