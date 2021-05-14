@@ -92,7 +92,8 @@ class grade_export_xls extends grade_export {
 
             foreach ($profilefields as $id => $field) {
                 $fieldvalue = grade_helper::get_user_field_value($user, $field);
-                $myxls->write_string($i, $id, $fieldvalue);
+                //$id for usrer?????
+                $myxls->write_string($i, 22, $fieldvalue);
             }
             $j = count($profilefields);
             if (!$this->onlyactive) {
