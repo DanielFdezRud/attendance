@@ -61,6 +61,7 @@ class grade_export_xls extends grade_export {
         // Print names of all the fields
         $profilefields = grade_helper::get_user_profile_fields($this->course->id, $this->usercustomfields);
         foreach ($profilefields as $id => $field) {
+            //No es la id del user
             $myxls->write_string(0, $id, $field->fullname);
         }
         $pos = count($profilefields);
@@ -92,6 +93,7 @@ class grade_export_xls extends grade_export {
 
             foreach ($profilefields as $id => $field) {
                 $fieldvalue = grade_helper::get_user_field_value($user, $field);
+                //No es la id del user
                 $myxls->write_string($i, $id, $fieldvalue);
             }
             $j = count($profilefields);

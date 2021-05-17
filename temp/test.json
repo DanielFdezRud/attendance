@@ -1,0 +1,482 @@
+{
+	"cicle":{
+		"DAM":{
+			"M1":{
+				"nom":"Sistemes informàtics",
+				"uf1":{
+					"nom":"Instal·lació, configuració i explotació del sistema informàtic",
+					"hores":49
+				},
+				"uf2":{
+					"nom":"Gestió de la informació i de recursos en una xarxa",
+					"hores":69
+				},
+				"uf3":{
+					"nom":"Implantació de programari específic",
+					"hores":14
+				},
+				"hores_min":132,
+				"hores_hld":0,
+				"hores_totals":132
+			},
+			"M2":{
+				"nom":"Bases de dades",
+				"uf1":{
+					"nom":"Introducció a les bases de dades",
+					"hores":25
+				},
+				"uf2":{
+					"nom":"Llenguatges SQL: DML i DDL",
+					"hores":58
+				},
+				"uf3":{
+					"nom":"Llenguatges SQL: DCL i extensió procedimental SGBD corporatiu",
+					"hores":66
+				},
+				"uf4":{
+					"nom":"Bases de dades objecte-relacionals",
+					"hores":16
+				},
+				"hores_min":165,
+				"hores_hld":0,
+				"hores_totals":165
+			},
+			"M3":{
+				"nom":"Programació",
+				"uf1":{
+					"nom":"Programació estructurada",
+					"hores":74
+				},
+				"uf2":{
+					"nom":"Disseny modular",
+					"hores":39
+				},
+				"uf3":{
+					"nom":"Fonaments de gestió de fitxers",
+					"hores":19
+				},
+				"uf4":{
+					"nom":"Programació orientada a objectes Fonaments",
+					"hores":24
+				},
+				"uf5":{
+					"nom":"POO Llibreries de classes fonamentals",
+					"hores":24
+				},
+				"uf6":{
+					"nom":"POO Introducció a la persistència en BD",
+					"hores":18
+				},
+				"hores_min":198,
+				"hores_hld":33,
+				"hores_totals":231
+			},
+			"M4":{
+				"nom":"Llenguatges de marques i sistemes de gestió d’informació",
+				"uf1":{
+					"nom":"Programació amb XML",
+					"hores":45
+				},
+				"uf2":{
+					"nom":"Àmbits d’aplicació de l’XML",
+					"hores":27
+				},
+				"uf3":{
+					"nom":"Sistemes de gestió d’informació empresarial",
+					"hores":27
+				},
+				"hores_min":99,
+				"hores_hld":0,
+				"hores_totals":99
+			},
+			"M11":{
+				"nom":"Formació i orientació laboral",
+				"uf1":{
+					"nom":"Incorporació al treball",
+					"hores":33
+				},
+				"uf2":{
+					"nom":"Prevenció de riscos laborals",
+					"hores":33
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M12":{
+				"nom":"Empresa i iniciativa emprenedora",
+				"uf1":{
+					"nom":"Programació estructurada",
+					"hores":66
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M5":{
+				"nom":"Desenvolupament de programari",
+				"uf1":{
+					"nom":"Programació amb XML",
+					"hores":20
+				},
+				"uf2":{
+					"nom":"Optimització del programari",
+					"hores":20
+				},
+				"uf3":{
+					"nom":"Introducció al disseny orientat a objectes",
+					"hores":26
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M6":{
+				"nom":"Accés a dades",
+				"uf1":{
+					"nom":"Persistència en fitxers",
+					"hores":24
+				},
+				"uf2":{
+					"nom":"Persistència en BDR-BDOR-BDOO",
+					"hores":27
+				},
+				"uf3":{
+					"nom":"Persistència en BD natives XML",
+					"hores":24
+				},
+				"uf4":{
+					"nom":"Components d’accés a dades",
+					"hores":24
+				},
+				"hores_min":99,
+				"hores_hld":0,
+				"hores_totals":99
+			},
+			"M7":{
+				"nom":"Desenvolupament d’interfícies",
+				"uf1":{
+					"nom":"Disseny i implementació d’interfícies",
+					"hores":79
+				},
+				"uf2":{
+					"nom":"Preparació i distribució d’aplicacions",
+					"hores":20
+				},
+				"hores_min":99,
+				"hores_hld":0,
+				"hores_totals":99
+			},
+			"M8":{
+				"nom":"Programació multimèdia i dispositius mòbils",
+				"uf1":{
+					"nom":"Desenvolupament d’aplicacions per dispositius mòbils",
+					"hores":45
+				},
+				"uf2":{
+					"nom":"Programació multimèdia",
+					"hores":24
+				},
+				"uf3":{
+					"nom":"Desenvolupament de jocs per dispositius mòbils",
+					"hores":30
+				},
+				"hores_min":99,
+				"hores_hld":33,
+				"hores_totals":132
+			},
+			"M9":{
+				"nom":"Programació de serveis i processos",
+				"uf1":{
+					"nom":"Seguretat i criptografia ",
+					"hores":14
+				},
+				"uf2":{
+					"nom":"Processos i fils",
+					"hores":26
+				},
+				"uf3":{
+					"nom":"Sòcols i serveis",
+					"hores":26
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M10":{
+				"nom":"Sistemes de gestió empresarial",
+				"uf1":{
+					"nom":"Sistemes ERP-CRM Implantació",
+					"hores":33
+				},
+				"uf2":{
+					"nom":"Sistemes ERP-CRM Explotació i adequació",
+					"hores":33
+				},
+				"hores_min":66,
+				"hores_hld":33,
+				"hores_totals":99
+			},
+			"M13":{
+				"nom":"Projecte",
+				"uf1":{
+					"nom":"Projecte de desenvolupament d’aplicacions multiplataforma",
+					"hores":297
+				},
+				"hores_min":297,
+				"hores_hld":0,
+				"hores_totals":297
+			},
+			"M14":{
+				"nom":"Formació en centres de treball",
+				"uf1":{
+					"nom":"Formació en centres de treball",
+					"hores":383
+				},
+				"hores_min":383,
+				"hores_hld":0,
+				"hores_totals":383
+			}
+		},
+		"ASIX":{
+			"M1":{
+				"nom":"Sistemes informàtics",
+				"uf1":{
+					"nom":"Instal·lació, configuració i explotació del sistema informàtic",
+					"hores":49
+				},
+				"uf2":{
+					"nom":"Gestió de la informació i de recursos en una xarxa",
+					"hores":69
+				},
+				"uf3":{
+					"nom":"Implantació de programari específic",
+					"hores":14
+				},
+				"uf4":{
+					"nom":"Seguretat, rendiment i recursos",
+					"hores":33
+				},
+				"hores_min":165,
+				"hores_hld":0,
+				"hores_totals":165
+			},
+			"M2":{
+				"nom":"Bases de dades",
+				"uf1":{
+					"nom":"Introducció a les bases de dades",
+					"hores":25
+				},
+				"uf2":{
+					"nom":"Llenguatges SQL: DML i DDL",
+					"hores":58
+				},
+				"uf3":{
+					"nom":"Llenguatges SQL: DCL i extensió procedimental SGBD corporatiu",
+					"hores":66
+				},
+				"hores_min":165,
+				"hores_hld":0,
+				"hores_totals":165
+			},
+			"M3":{
+				"nom":"Programació",
+				"uf1":{
+					"nom":"Programació estructurada",
+					"hores":74
+				},
+				"uf2":{
+					"nom":"Disseny modular",
+					"hores":39
+				},
+				"uf3":{
+					"nom":"Fonaments de gestió de fitxers",
+					"hores":19
+				},
+				"hores_min":132,
+				"hores_hld":33,
+				"hores_totals":165
+			},
+			"M4":{
+				"nom":"Llenguatges de marques i sistemes de gestió d’informació",
+				"uf1":{
+					"nom":"Programació amb XML",
+					"hores":45
+				},
+				"uf2":{
+					"nom":"Àmbits d’aplicació de l’XML",
+					"hores":27
+				},
+				"uf3":{
+					"nom":"Sistemes de gestió d’informació empresarial",
+					"hores":27
+				},
+				"hores_min":99,
+				"hores_hld":0,
+				"hores_totals":99
+			},
+			"M12":{
+				"nom":"Formació i orientació laboral",
+				"uf1":{
+					"nom":"Incorporació al treball",
+					"hores":33
+				},
+				"uf2":{
+					"nom":"Prevenció de riscos laborals",
+					"hores":33
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M13":{
+				"nom":"Empresa i iniciativa emprenedora",
+				"uf1":{
+					"nom":"Programació estructurada",
+					"hores":66
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M5":{
+				"nom":"Fonaments de maquinari",
+				"uf1":{
+					"nom":"Arquitectura de sistemes",
+					"hores":22
+				},
+				"uf2":{
+					"nom":"Instal·lació, configuració i recuperació de programari",
+					"hores":22
+				},
+				"uf3":{
+					"nom":"Implantació i manteniment de CPD",
+					"hores":22
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M6":{
+				"nom":"Administració de sistemes operatius",
+				"uf1":{
+					"nom":"Administració avançada de sistemes operatius",
+					"hores":70
+				},
+				"uf2":{
+					"nom":"Automatització de tasques i llenguatges de guions",
+					"hores":29
+				},
+				"hores_min":99,
+				"hores_hld":33,
+				"hores_totals":132
+			},
+			"M7":{
+				"nom":"Planificació i administració de xarxes",
+				"uf1":{
+					"nom":"Introducció a les xarxes",
+					"hores":44
+				},
+				"uf2":{
+					"nom":"Administració de dispositius de xarxa",
+					"hores":44
+				},
+				"uf3":{
+					"nom":"Administració avançada de xarxes",
+					"hores":44
+				},
+				"hores_min":132,
+				"hores_hld":0,
+				"hores_totals":132
+			},
+			"M8":{
+				"nom":"Serveis de xarxa i Internet",
+				"uf1":{
+					"nom":"Serveis de noms i configuració automàtica",
+					"hores":25
+				},
+				"uf2":{
+					"nom":"Serveis web i de transferència de fitxers",
+					"hores":25
+				},
+				"uf3":{
+					"nom":"Correu electrònic i missatgeria",
+					"hores":25
+				},
+				"uf4":{
+					"nom":"Serveis d’àudio i vídeo",
+					"hores":24
+				},
+				"hores_min":99,
+				"hores_hld":0,
+				"hores_totals":99
+			},
+			"M9":{
+				"nom":"Implantació d’aplicacions web",
+				"uf1":{
+					"nom":"Llenguatges de guions de servidor",
+					"hores":33
+				},
+				"uf2":{
+					"nom":"Implantació de gestors de continguts",
+					"hores":33
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M10":{
+				"nom":"Administració de sistemes gestors de bases de dades",
+				"uf1":{
+					"nom":"Llenguatges SQL: DCL i extensió procedimental SGBD corporatiu",
+					"hores":33
+				},
+				"hores_min":33,
+				"hores_hld":33,
+				"hores_totals":66
+			},
+			"M11":{
+				"nom":"Administració de sistemes gestors de bases de dades",
+				"uf1":{
+					"nom":"Seguretat física, lògica i legislació",
+					"hores":16
+				},
+				"uf2":{
+					"nom":"Seguretat activa i accés remot",
+					"hores":16
+				},
+				"uf3":{
+					"nom":"Tallafocs i servidors intermediaris",
+					"hores":19
+				},
+				"uf4":{
+					"nom":"Alta disponibilitat",
+					"hores":15
+				},
+				"hores_min":33,
+				"hores_hld":33,
+				"hores_totals":66
+			},
+			"M14":{
+				"nom":"Projecte",
+				"uf1":{
+					"nom":"Projecte de desenvolupament d’aplicacions multiplataforma",
+					"hores":297
+				},
+				"hores_min":297,
+				"hores_hld":0,
+				"hores_totals":297
+			},
+			"M15":{
+				"nom":"Formació en centres de treball",
+				"uf1":{
+					"nom":"Formació en centres de treball",
+					"hores":383
+				},
+				"hores_min":383,
+				"hores_hld":0,
+				"hores_totals":383
+			}
+		}
+	}
+}
