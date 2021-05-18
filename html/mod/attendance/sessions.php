@@ -44,6 +44,11 @@ if (empty($pageparams->action)) {
 
 $cm             = get_coursemodule_from_id('attendance', $id, 0, false, MUST_EXIST);
 $course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
+// TODO mirar porque no se puede coger solo, aunque tengamos $cm
+// $module         =$DB->get_record('module',array('id' => $cm->module), '*', MUST_EXIST);
+// PRUEBAS
+$module = 'UF5';
+
 $att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
 
 require_login($course, true, $cm);
@@ -61,7 +66,7 @@ $PAGE->set_cacheable(true);
 $PAGE->navbar->add($att->name);
 
 $currenttab = attendance_tabs::TAB_ADD;
-$formparams = array('course' => $course, 'cm' => $cm, 'modcontext' => $context, 'att' => $att);
+$formparams = array('course' => $course, 'cm' => $cm, 'modcontext' => $context, 'att' => $att, 'module' =>$module);
 switch ($att->pageparams->action) {
     case mod_attendance_sessions_page_params::ACTION_ADD:
         $url = $att->url_sessions(array('action' => mod_attendance_sessions_page_params::ACTION_ADD));

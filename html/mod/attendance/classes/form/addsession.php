@@ -130,6 +130,13 @@ class addsession extends moodleform {
                             array('maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $modcontext));
         $mform->setType('sdescription', PARAM_RAW);
 
+        //SELECT MODULE
+        $displaylist = addsession::get_modules();
+        $mform->addElement('select', 'module', 'Modul del curs', $displaylist);
+        $mform->addHelpButton('module', 'coursecategory');
+        $mform->setDefault('module', 0);
+    
+
         if (!empty($pluginconfig->enablecalendar)) {
             $mform->addElement('checkbox', 'calendarevent', '', get_string('calendarevent', 'attendance'));
             $mform->addHelpButton('calendarevent', 'calendarevent', 'attendance');
@@ -394,5 +401,51 @@ class addsession extends moodleform {
         }
 
         return $found;
+    }
+
+    function get_modules() {
+        $servername = "192.168.9.216";
+        $database = "moodle";
+        $username = "usuariomoodle";
+        $password = "ira491";
+        $mysqli = new \MySQLi($servername, $username, $password, $database);
+        
+        if ($mysqli->connect_errno) {
+            printf("Conexion fallida: %s\n", $mysqli->connect_error);
+            exit();
+        }
+        $consulta = "SELECT value FROM mdl_config WHERE id = 511";
+        
+        if ($resultado = $mysqli->query($consulta)) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $res = $fila["value"];
+                $arr = json_decode($res,true);
+                //print_r($res);
+                
+                //TODO - ARREGLAR PQ ESTO QUEDA SUPER FEO
+                $grade = 'DAM';
+                $modulo = 'M6';
+                $arryUfs =  array_keys($arr['cicle'][$grade][$modulo]);
+                array_shift($arryUfs);
+                for ($i=0; $i < 3 ; $i++) { 
+                    array_pop($arryUfs);
+                }
+                // foreach ($arr as $pos) {
+                //     if(strpos($pos, "uf") !== false) {
+                //         array_push($arryUfs , $pos);
+                //     }
+                //
+
+                // $resultat = preg_match('/[u][f][1-9]/', $prueba, 1);
+                // if(strpos($prueba,'/[u][f]%/')){
+                //     return $prueba;
+                // }
+
+                // return array_keys($arr['cicle']['DAM']['M6']);
+                return $arryUfs;
+            }
+            $resultado->free();
+        }
+        $mysqli->close(); 
     }
 }

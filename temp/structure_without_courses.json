@@ -1,5 +1,5 @@
 {
-	"cicle":{
+	"cicles":{
 		"DAM":{
 			"M1":{
 				"nom":"Sistemes informàtics",
@@ -88,30 +88,6 @@
 				"hores_min":99,
 				"hores_hld":0,
 				"hores_totals":99
-			},
-			"M11":{
-				"nom":"Formació i orientació laboral",
-				"uf1":{
-					"nom":"Incorporació al treball",
-					"hores":33
-				},
-				"uf2":{
-					"nom":"Prevenció de riscos laborals",
-					"hores":33
-				},
-				"hores_min":66,
-				"hores_hld":0,
-				"hores_totals":66
-			},
-			"M12":{
-				"nom":"Empresa i iniciativa emprenedora",
-				"uf1":{
-					"nom":"Programació estructurada",
-					"hores":66
-				},
-				"hores_min":66,
-				"hores_hld":0,
-				"hores_totals":66
 			},
 			"M5":{
 				"nom":"Desenvolupament de programari",
@@ -216,6 +192,30 @@
 				"hores_min":66,
 				"hores_hld":33,
 				"hores_totals":99
+			},			
+			"M11":{
+				"nom":"Formació i orientació laboral",
+				"uf1":{
+					"nom":"Incorporació al treball",
+					"hores":33
+				},
+				"uf2":{
+					"nom":"Prevenció de riscos laborals",
+					"hores":33
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M12":{
+				"nom":"Empresa i iniciativa emprenedora",
+				"uf1":{
+					"nom":"Programació estructurada",
+					"hores":66
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
 			},
 			"M13":{
 				"nom":"Projecte",
@@ -314,30 +314,6 @@
 				"hores_min":99,
 				"hores_hld":0,
 				"hores_totals":99
-			},
-			"M12":{
-				"nom":"Formació i orientació laboral",
-				"uf1":{
-					"nom":"Incorporació al treball",
-					"hores":33
-				},
-				"uf2":{
-					"nom":"Prevenció de riscos laborals",
-					"hores":33
-				},
-				"hores_min":66,
-				"hores_hld":0,
-				"hores_totals":66
-			},
-			"M13":{
-				"nom":"Empresa i iniciativa emprenedora",
-				"uf1":{
-					"nom":"Programació estructurada",
-					"hores":66
-				},
-				"hores_min":66,
-				"hores_hld":0,
-				"hores_totals":66
 			},
 			"M5":{
 				"nom":"Fonaments de maquinari",
@@ -455,6 +431,30 @@
 				},
 				"hores_min":33,
 				"hores_hld":33,
+				"hores_totals":66
+			},
+			"M12":{
+				"nom":"Formació i orientació laboral",
+				"uf1":{
+					"nom":"Incorporació al treball",
+					"hores":33
+				},
+				"uf2":{
+					"nom":"Prevenció de riscos laborals",
+					"hores":33
+				},
+				"hores_min":66,
+				"hores_hld":0,
+				"hores_totals":66
+			},
+			"M13":{
+				"nom":"Empresa i iniciativa emprenedora",
+				"uf1":{
+					"nom":"Programació estructurada",
+					"hores":66
+				},
+				"hores_min":66,
+				"hores_hld":0,
 				"hores_totals":66
 			},
 			"M14":{

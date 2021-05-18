@@ -11,6 +11,7 @@ require_once($CFG->libdir.'/completionlib.php');
 class course_edit_form extends moodleform {
     protected $course;
     protected $context;
+    protected $module;
 
     /**
      * Form definition.
@@ -33,9 +34,11 @@ class course_edit_form extends moodleform {
 
         if (!empty($course->id)) {
             $coursecontext = context_course::instance($course->id);
+            $modulecontext = context_module::instance($module->id);
             $context = $coursecontext;
         } else {
             $coursecontext = null;
+            $modulecontext = null;
             $context = $categorycontext;
         }
 
@@ -63,7 +66,7 @@ class course_edit_form extends moodleform {
             $mform->hardFreeze('fullname');
             $mform->setConstant('fullname', $course->fullname);
         }
-
+        
         $mform->addElement('text', 'shortname', get_string('shortnamecourse'), 'maxlength="100" size="20"');
         $mform->addHelpButton('shortname', 'shortnamecourse');
         $mform->addRule('shortname', get_string('missingshortname'), 'required', null, 'client');
@@ -72,8 +75,9 @@ class course_edit_form extends moodleform {
             $mform->hardFreeze('shortname');
             $mform->setConstant('shortname', $course->shortname);
         }
-
+        
         // Verify permissions to change course category or keep current.
+        // SELECT CATEGORY
         if (empty($course->id)) {
             if (has_capability('moodle/course:create', $categorycontext)) {
                 $displaylist = core_course_category::make_categories_list('moodle/course:create');
@@ -102,7 +106,26 @@ class course_edit_form extends moodleform {
                 $mform->setConstant('category', $course->category);
             }
         }
-
+        $currentCategory = core_course_category::get($course->category, MUST_EXIST, true)
+        ->get_formatted_name();        
+         /*echo "<script>
+                alert('".."');
+        </script>";*/
+       
+        //SELECT MODULE
+        if (empty($course->id)) {
+            if ($categorycontext != null) {
+                $displaylist = course_edit_form::get_modules();
+                $mform->addElement('select', 'module', 'Modul del curs', $displaylist);
+                $mform->addHelpButton('module', 'modulecategory');
+                $mform->setDefault('module', 0);
+            } else {
+                $mform->addElement('hidden', 'module', null);
+                $mform->setType('module', PARAM_INT);
+                $mform->setConstant('module', 0);
+            }
+        }                
+        
         $choices = array();
         $choices['0'] = get_string('hide');
         $choices['1'] = get_string('show');
@@ -128,7 +151,7 @@ class course_edit_form extends moodleform {
 
         $mform->addElement('date_time_selector', 'enddate', get_string('enddate'), array('optional' => true));
         $mform->addHelpButton('enddate', 'enddate');
-
+        
         if (!empty($CFG->enablecourserelativedates)) {
             $attributes = [
                 'aria-describedby' => 'relativedatesmode_warning'
@@ -462,4 +485,33 @@ class course_edit_form extends moodleform {
 
         return $errors;
     }
+    
+    function get_modules() {
+        $servername = "192.168.9.216";
+        $database = "moodle";
+        $username = "usuariomoodle";
+        $password = "ira491";
+        $mysqli = new mysqli($servername, $username, $password, $database);
+        
+        if ($mysqli->connect_errno) {
+            printf("Conexion fallida: %s\n", $mysqli->connect_error);
+            exit();
+        }
+        
+        $consulta = "SELECT value FROM mdl_config WHERE id = 511";
+        
+        if ($resultado = $mysqli->query($consulta)) {
+            while ($fila = $resultado->fetch_assoc()) {
+                
+                $res = $fila["value"];
+                //print_r($res);
+                $arr = json_decode($res,true);
+                return array_keys($arr['cicle']['DAM']);
+            }
+            $resultado->free();
+        }
+        $mysqli->close(); 
+    }
 }
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
