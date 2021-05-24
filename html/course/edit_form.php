@@ -58,6 +58,7 @@ class course_edit_form extends moodleform {
         $mform->setType('returnurl', PARAM_LOCALURL);
         $mform->setConstant('returnurl', $returnurl);
 
+
         $mform->addElement('text','fullname', get_string('fullnamecourse'),'maxlength="254" size="50"');
         $mform->addHelpButton('fullname', 'fullnamecourse');
         $mform->addRule('fullname', get_string('missingfullname'), 'required', null, 'client');
@@ -111,7 +112,7 @@ class course_edit_form extends moodleform {
          /*echo "<script>
                 alert('".."');
         </script>";*/
-       
+
         //SELECT MODULE
         if (empty($course->id)) {
             if ($categorycontext != null) {

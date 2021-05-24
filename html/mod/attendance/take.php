@@ -49,7 +49,6 @@ $context = context_module::instance($cm->id);
 require_capability('mod/attendance:takeattendances', $context);
 
 $pageparams->group = groups_get_activity_group($cm, true);
-
 $pageparams->init($course->id);
 $att = new mod_attendance_structure($att, $cm, $course, $PAGE->context, $pageparams);
 

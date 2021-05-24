@@ -251,34 +251,14 @@ class updatesession extends \moodleform {
             printf("Conexion fallida: %s\n", $mysqli->connect_error);
             exit();
         }
-        
         $consulta = "SELECT value FROM mdl_config WHERE id = 511";
         
+        $i = 0;
         if ($resultado = $mysqli->query($consulta)) {
-            while ($fila = $resultado->fetch_assoc()) {
+            if ($fila = $resultado->fetch_assoc()) {
                 $res = $fila["value"];
                 $arr = json_decode($res,true);
-                //print_r($res);
-                
-                //TODO - ARREGLAR PQ ESTO QUEDA SUPER FEO
-                $arryUfs =  array_keys($arr['cicle']['DAM']['M6']);
-                array_shift($arryUfs);
-                for ($i=0; $i < 3 ; $i++) { 
-                    array_pop($arryUfs);
-                }
-                // foreach ($arr as $pos) {
-                //     if(strpos($pos, "uf") !== false) {
-                //         array_push($arryUfs , $pos);
-                //     }
-                //
-
-                // $resultat = preg_match('/[u][f][1-9]/', $prueba, 1);
-                // if(strpos($prueba,'/[u][f]%/')){
-                //     return $prueba;
-                // }
-
-                // return array_keys($arr['cicle']['DAM']['M6']);
-                return $arryUfs;
+                return array_values(preg_grep('/^uf[1-9]/i', array_keys($arr['cicle']['DAM']['M6'])));
             }
             $resultado->free();
         }

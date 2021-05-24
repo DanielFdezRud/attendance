@@ -36,8 +36,7 @@ use DatePeriod;
  *
  * @copyright  2011 Artem Andreev <andreev.artem@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-class addsession extends moodleform {
+ */class addsession extends moodleform {
 
     /**
      * Called to define this moodle form
@@ -403,7 +402,14 @@ class addsession extends moodleform {
         return $found;
     }
 
-    function get_modules() {
+    function get_modules() {/*
+        $id                     = required_param('id', PARAM_INT);
+        $cm             = get_coursemodule_from_id('attendance', $id, 0, false, MUST_EXIST);
+        $course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);*/
+        
+        echo'<script type="text/javascript">
+            alert("'. $course .'");
+            </script>';
         $servername = "192.168.9.216";
         $database = "moodle";
         $username = "usuariomoodle";
@@ -415,34 +421,18 @@ class addsession extends moodleform {
             exit();
         }
         $consulta = "SELECT value FROM mdl_config WHERE id = 511";
+        $consulta_modulo = "SELECT module FROM mdl_attendance WHERE course = ?";
+        // ? == $course.id
         
+        $cicle = 'cicle';
+        $curso = 'DAM'; // Category     (Moodle)
+        $modulo = 'M6'; // Curso (Moodle)
+
         if ($resultado = $mysqli->query($consulta)) {
-            while ($fila = $resultado->fetch_assoc()) {
+            if ($fila = $resultado->fetch_assoc()) {
                 $res = $fila["value"];
                 $arr = json_decode($res,true);
-                //print_r($res);
-                
-                //TODO - ARREGLAR PQ ESTO QUEDA SUPER FEO
-                $grade = 'DAM';
-                $modulo = 'M6';
-                $arryUfs =  array_keys($arr['cicle'][$grade][$modulo]);
-                array_shift($arryUfs);
-                for ($i=0; $i < 3 ; $i++) { 
-                    array_pop($arryUfs);
-                }
-                // foreach ($arr as $pos) {
-                //     if(strpos($pos, "uf") !== false) {
-                //         array_push($arryUfs , $pos);
-                //     }
-                //
-
-                // $resultat = preg_match('/[u][f][1-9]/', $prueba, 1);
-                // if(strpos($prueba,'/[u][f]%/')){
-                //     return $prueba;
-                // }
-
-                // return array_keys($arr['cicle']['DAM']['M6']);
-                return $arryUfs;
+                return array_values(preg_grep('/^uf[1-9]/i', array_keys($arr[$cicle][$curso][$modulo])));
             }
             $resultado->free();
         }
