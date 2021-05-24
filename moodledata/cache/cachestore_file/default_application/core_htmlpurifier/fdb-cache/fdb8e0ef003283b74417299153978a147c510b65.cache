@@ -1,0 +1,130 @@
+s:2699:"<strong>Output buffer:</strong> "]=&gt;
+      string(1) "0"
+      ["unique"]=&gt;
+      NULL
+      ["meta_type"]=&gt;
+      string(1) "I"
+    }
+  }
+  ["calendarevent"]=&gt;
+  object(database_column_info)#418 (1) {
+    ["data":protected]=&gt;
+    array(12) {
+      ["name"]=&gt;
+      string(13) "calendarevent"
+      ["type"]=&gt;
+      string(7) "tinyint"
+      ["max_length"]=&gt;
+      int(2)
+      ["scale"]=&gt;
+      NULL
+      ["not_null"]=&gt;
+      bool(true)
+      ["primary_key"]=&gt;
+      bool(false)
+      ["auto_increment"]=&gt;
+      bool(false)
+      ["binary"]=&gt;
+      bool(false)
+      ["has_default"]=&gt;
+      bool(true)
+      ["default_value"]=&gt;
+      string(1) "1"
+      ["unique"]=&gt;
+      NULL
+      ["meta_type"]=&gt;
+      string(1) "I"
+    }
+  }
+  ["includeqrcode"]=&gt;
+  object(database_column_info)#419 (1) {
+    ["data":protected]=&gt;
+    array(12) {
+      ["name"]=&gt;
+      string(13) "includeqrcode"
+      ["type"]=&gt;
+      string(7) "tinyint"
+      ["max_length"]=&gt;
+      int(2)
+      ["scale"]=&gt;
+      NULL
+      ["not_null"]=&gt;
+      bool(true)
+      ["primary_key"]=&gt;
+      bool(false)
+      ["auto_increment"]=&gt;
+      bool(false)
+      ["binary"]=&gt;
+      bool(false)
+      ["has_default"]=&gt;
+      bool(true)
+      ["default_value"]=&gt;
+      string(1) "0"
+      ["unique"]=&gt;
+      NULL
+      ["meta_type"]=&gt;
+      string(1) "I"
+    }
+  }
+  ["rotateqrcode"]=&gt;
+  object(database_column_info)#420 (1) {
+    ["data":protected]=&gt;
+    array(12) {
+      ["name"]=&gt;
+      string(12) "rotateqrcode"
+      ["type"]=&gt;
+      string(7) "tinyint"
+      ["max_length"]=&gt;
+      int(2)
+      ["scale"]=&gt;
+      NULL
+      ["not_null"]=&gt;
+      bool(true)
+      ["primary_key"]=&gt;
+      bool(false)
+      ["auto_increment"]=&gt;
+      bool(false)
+      ["binary"]=&gt;
+      bool(false)
+      ["has_default"]=&gt;
+      bool(true)
+      ["default_value"]=&gt;
+      string(1) "0"
+      ["unique"]=&gt;
+      NULL
+      ["meta_type"]=&gt;
+      string(1) "I"
+    }
+  }
+  ["rotateqrcodesecret"]=&gt;
+  object(database_column_info)#421 (1) {
+    ["data":protected]=&gt;
+    array(12) {
+      ["name"]=&gt;
+      string(18) "rotateqrcodesecret"
+      ["type"]=&gt;
+      string(7) "varchar"
+      ["max_length"]=&gt;
+      string(2) "10"
+      ["scale"]=&gt;
+      NULL
+      ["not_null"]=&gt;
+      bool(false)
+      ["primary_key"]=&gt;
+      bool(false)
+      ["auto_increment"]=&gt;
+      bool(false)
+      ["binary"]=&gt;
+      bool(false)
+      ["has_default"]=&gt;
+      bool(false)
+      ["default_value"]=&gt;
+      NULL
+      ["unique"]=&gt;
+      NULL
+      ["meta_type"]=&gt;
+      string(1) "C"
+    }
+  }
+}
+";

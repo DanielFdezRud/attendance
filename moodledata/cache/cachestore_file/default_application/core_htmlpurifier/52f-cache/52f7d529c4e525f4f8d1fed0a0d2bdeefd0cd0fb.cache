@@ -1,0 +1,57 @@
+s:1099:"<strong>Output buffer:</strong> object(stdClass)#325 (19) {
+  ["sessiontype"]=&gt;
+  int(0)
+  ["sessiondate"]=&gt;
+  int(1621807200)
+  ["sestime"]=&gt;
+  array(4) {
+    ["starthour"]=&gt;
+    string(1) "0"
+    ["startminute"]=&gt;
+    string(1) "0"
+    ["endhour"]=&gt;
+    string(1) "0"
+    ["endminute"]=&gt;
+    string(1) "0"
+  }
+  ["statusset"]=&gt;
+  int(0)
+  ["sdescription"]=&gt;
+  array(3) {
+    ["text"]=&gt;
+    string(0) ""
+    ["format"]=&gt;
+    string(1) "1"
+    ["itemid"]=&gt;
+    int(732238311)
+  }
+  ["uf"]=&gt;
+  string(1) "0"
+  ["calendarevent"]=&gt;
+  string(1) "1"
+  ["absenteereport"]=&gt;
+  string(1) "1"
+  ["sessionenddate"]=&gt;
+  int(1621807200)
+  ["coursestartdate"]=&gt;
+  int(1620856800)
+  ["previoussessiondate"]=&gt;
+  int(0)
+  ["mform_isexpanded_id_headerstudentmarking"]=&gt;
+  int(1)
+  ["studentscanmark"]=&gt;
+  int(0)
+  ["automark"]=&gt;
+  string(1) "0"
+  ["subnet"]=&gt;
+  string(0) ""
+  ["usedefaultsubnet"]=&gt;
+  string(1) "1"
+  ["preventsharedip"]=&gt;
+  string(1) "2"
+  ["preventsharediptime"]=&gt;
+  int(0)
+  ["submitbutton"]=&gt;
+  string(7) "Afegeix"
+}
+";

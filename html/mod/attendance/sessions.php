@@ -44,11 +44,6 @@ if (empty($pageparams->action)) {
 
 $cm             = get_coursemodule_from_id('attendance', $id, 0, false, MUST_EXIST);
 $course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-// TODO mirar porque no se puede coger solo, aunque tengamos $cm
-// $module         =$DB->get_record('module',array('id' => $cm->module), '*', MUST_EXIST);
-// PRUEBAS
-$module = 'UF5';
-
 $att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
 
 require_login($course, true, $cm);
@@ -66,9 +61,7 @@ $PAGE->set_cacheable(true);
 $PAGE->navbar->add($att->name);
 
 $currenttab = attendance_tabs::TAB_ADD;
-$formparams = array('course' => $course, 'cm' => $cm, 'modcontext' => $context, 'att' => $att, 'module' =>$module);
-
-error_log("ACTION ADD".mod_attendance_sessions_page_params::ACTION_ADD);
+$formparams = array('course' => $course, 'cm' => $cm, 'modcontext' => $context, 'att' => $att);
 
 switch ($att->pageparams->action) {
     case mod_attendance_sessions_page_params::ACTION_ADD:
@@ -80,11 +73,11 @@ switch ($att->pageparams->action) {
         }
 
         
-        
-error_log("ACTION ADD DONE ".print_r($mform->get_modules(), true    ) );        
-        
         if ($formdata = $mform->get_data()) {
+            //var_dump($formdata);
             $sessions = attendance_construct_sessions_data_for_add($formdata, $att);
+            //var_dump($att);
+            //var_dump($sessions);
             $att->add_sessions($sessions);
             if (count($sessions) == 1) {
                 $message = get_string('sessiongenerated', 'attendance');

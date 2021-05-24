@@ -8,18 +8,18 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * This file contains the forms to add session.
  *
- * @package   mod_attendance
- * @copyright  2011 Artem Andreev <andreev.artem@gmail.com>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package mod_attendance
+ * @copyright 2011 Artem Andreev <andreev.artem@gmail.com>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace mod_attendance\form;
 
@@ -34,23 +34,25 @@ use DatePeriod;
 /**
  * class for displaying add form.
  *
- * @copyright  2011 Artem Andreev <andreev.artem@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */class addsession extends moodleform {
+ * @copyright 2011 Artem Andreev <andreev.artem@gmail.com>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class addsession extends moodleform
+{
 
     /**
      * Called to define this moodle form
      *
      * @return void
      */
-    public function definition() {
-
+    public function definition()
+    {
         global $CFG, $USER;
-        $mform    =& $this->_form;
+        $mform = &$this->_form;
 
-        $course        = $this->_customdata['course'];
-        $cm            = $this->_customdata['cm'];
-        $modcontext    = $this->_customdata['modcontext'];
+        $course = $this->_customdata['course'];
+        $cm = $this->_customdata['cm'];
+        $modcontext = $this->_customdata['modcontext'];
 
         $pluginconfig = get_config('attendance');
 
@@ -59,25 +61,21 @@ use DatePeriod;
         $groupmode = groups_get_activity_groupmode($cm);
         switch ($groupmode) {
             case NOGROUPS:
-                $mform->addElement('static', 'sessiontypedescription', get_string('sessiontype', 'attendance'),
-                                  get_string('commonsession', 'attendance'));
+                $mform->addElement('static', 'sessiontypedescription', get_string('sessiontype', 'attendance'), get_string('commonsession', 'attendance'));
                 $mform->addHelpButton('sessiontypedescription', 'sessiontype', 'attendance');
                 $mform->addElement('hidden', 'sessiontype', mod_attendance_structure::SESSION_COMMON);
                 $mform->setType('sessiontype', PARAM_INT);
                 break;
             case SEPARATEGROUPS:
-                $mform->addElement('static', 'sessiontypedescription', get_string('sessiontype', 'attendance'),
-                                  get_string('groupsession', 'attendance'));
+                $mform->addElement('static', 'sessiontypedescription', get_string('sessiontype', 'attendance'), get_string('groupsession', 'attendance'));
                 $mform->addHelpButton('sessiontypedescription', 'sessiontype', 'attendance');
                 $mform->addElement('hidden', 'sessiontype', mod_attendance_structure::SESSION_GROUP);
                 $mform->setType('sessiontype', PARAM_INT);
                 break;
             case VISIBLEGROUPS:
                 $radio = array();
-                $radio[] = &$mform->createElement('radio', 'sessiontype', '', get_string('commonsession', 'attendance'),
-                                                  mod_attendance_structure::SESSION_COMMON);
-                $radio[] = &$mform->createElement('radio', 'sessiontype', '', get_string('groupsession', 'attendance'),
-                                                  mod_attendance_structure::SESSION_GROUP);
+                $radio[] = &$mform->createElement('radio', 'sessiontype', '', get_string('commonsession', 'attendance'), mod_attendance_structure::SESSION_COMMON);
+                $radio[] = &$mform->createElement('radio', 'sessiontype', '', get_string('groupsession', 'attendance'), mod_attendance_structure::SESSION_GROUP);
                 $mform->addGroup($radio, 'sessiontype', get_string('sessiontype', 'attendance'), ' ', false);
                 $mform->setType('sessiontype', PARAM_INT);
                 $mform->addHelpButton('sessiontype', 'sessiontype', 'attendance');
@@ -85,8 +83,8 @@ use DatePeriod;
                 break;
         }
         if ($groupmode == SEPARATEGROUPS or $groupmode == VISIBLEGROUPS) {
-            if ($groupmode == SEPARATEGROUPS and !has_capability('moodle/site:accessallgroups', $modcontext)) {
-                $groups = groups_get_all_groups ($course->id, $USER->id, $cm->groupingid);
+            if ($groupmode == SEPARATEGROUPS and ! has_capability('moodle/site:accessallgroups', $modcontext)) {
+                $groups = groups_get_all_groups($course->id, $USER->id, $cm->groupingid);
             } else {
                 $groups = groups_get_all_groups($course->id, 0, $cm->groupingid);
             }
@@ -100,10 +98,11 @@ use DatePeriod;
                 $mform->disabledIf('groups', 'sessiontype', 'eq', mod_attendance_structure::SESSION_COMMON);
             } else {
                 if ($groupmode == VISIBLEGROUPS) {
-                    $mform->updateElementAttr($radio, array('disabled' => 'disabled'));
+                    $mform->updateElementAttr($radio, array(
+                        'disabled' => 'disabled'
+                    ));
                 }
-                $mform->addElement('static', 'groups', get_string('groups', 'group'),
-                                  get_string('nogroups', 'attendance'));
+                $mform->addElement('static', 'groups', get_string('groups', 'group'), get_string('nogroups', 'attendance'));
                 if ($groupmode == SEPARATEGROUPS) {
                     return;
                 }
@@ -116,7 +115,7 @@ use DatePeriod;
         $maxstatusset = attendance_get_max_statusset($this->_customdata['att']->id);
         if ($maxstatusset > 0) {
             $opts = array();
-            for ($i = 0; $i <= $maxstatusset; $i++) {
+            for ($i = 0; $i <= $maxstatusset; $i ++) {
                 $opts[$i] = attendance_get_setname($this->_customdata['att']->id, $i);
             }
             $mform->addElement('select', 'statusset', get_string('usestatusset', 'mod_attendance'), $opts);
@@ -125,18 +124,23 @@ use DatePeriod;
             $mform->setType('statusset', PARAM_INT);
         }
 
-        $mform->addElement('editor', 'sdescription', get_string('description', 'attendance'), array('rows' => 1, 'columns' => 80),
-                            array('maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $modcontext));
+        $mform->addElement('editor', 'sdescription', get_string('description', 'attendance'), array(
+            'rows' => 1,
+            'columns' => 80
+        ), array(
+            'maxfiles' => EDITOR_UNLIMITED_FILES,
+            'noclean' => true,
+            'context' => $modcontext
+        ));
         $mform->setType('sdescription', PARAM_RAW);
-
-        //SELECT MODULE
+        
         $displaylist = addsession::get_modules();
-        $mform->addElement('select', 'module', 'Modul del curs', $displaylist);
-        $mform->addHelpButton('module', 'coursecategory');
-        $mform->setDefault('module', 0);
-    
+        $mform->addElement('select', 'uf', 'Modul del curs' , $displaylist);
+        $mform->addHelpButton('uf', 'coursecategory');
+        $mform->setDefault('uf', 'UF1');
+        
 
-        if (!empty($pluginconfig->enablecalendar)) {
+        if (! empty($pluginconfig->enablecalendar)) {
             $mform->addElement('checkbox', 'calendarevent', '', get_string('calendarevent', 'attendance'));
             $mform->addHelpButton('calendarevent', 'calendarevent', 'attendance');
             if (isset($pluginconfig->calendarevent_default)) {
@@ -148,7 +152,7 @@ use DatePeriod;
         }
 
         // If warnings allow selector for reporting.
-        if (!empty(get_config('attendance', 'enablewarnings'))) {
+        if (! empty(get_config('attendance', 'enablewarnings'))) {
             $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
             $mform->addHelpButton('absenteereport', 'includeabsentee', 'attendance');
             if (isset($pluginconfig->absenteereport_default)) {
@@ -160,7 +164,7 @@ use DatePeriod;
         }
         // For multiple sessions.
         $mform->addElement('header', 'headeraddmultiplesessions', get_string('addmultiplesessions', 'attendance'));
-        if (!empty($pluginconfig->multisessionexpanded)) {
+        if (! empty($pluginconfig->multisessionexpanded)) {
             $mform->setExpanded('headeraddmultiplesessions');
         }
         $mform->addElement('checkbox', 'addmultiply', '', get_string('repeatasfollows', 'attendance'));
@@ -168,26 +172,66 @@ use DatePeriod;
 
         $sdays = array();
         if ($CFG->calendar_startwday === '0') { // Week start from sunday.
-            $sdays[] =& $mform->createElement('checkbox', 'Sun', '', get_string('sunday', 'calendar'));
+            $sdays[] = &$mform->createElement('checkbox', 'Sun', '', get_string('sunday', 'calendar'));
         }
-        $sdays[] =& $mform->createElement('checkbox', 'Mon', '', get_string('monday', 'calendar'));
-        $sdays[] =& $mform->createElement('checkbox', 'Tue', '', get_string('tuesday', 'calendar'));
-        $sdays[] =& $mform->createElement('checkbox', 'Wed', '', get_string('wednesday', 'calendar'));
-        $sdays[] =& $mform->createElement('checkbox', 'Thu', '', get_string('thursday', 'calendar'));
-        $sdays[] =& $mform->createElement('checkbox', 'Fri', '', get_string('friday', 'calendar'));
-        $sdays[] =& $mform->createElement('checkbox', 'Sat', '', get_string('saturday', 'calendar'));
+        $sdays[] = &$mform->createElement('checkbox', 'Mon', '', get_string('monday', 'calendar'));
+        $sdays[] = &$mform->createElement('checkbox', 'Tue', '', get_string('tuesday', 'calendar'));
+        $sdays[] = &$mform->createElement('checkbox', 'Wed', '', get_string('wednesday', 'calendar'));
+        $sdays[] = &$mform->createElement('checkbox', 'Thu', '', get_string('thursday', 'calendar'));
+        $sdays[] = &$mform->createElement('checkbox', 'Fri', '', get_string('friday', 'calendar'));
+        $sdays[] = &$mform->createElement('checkbox', 'Sat', '', get_string('saturday', 'calendar'));
         if ($CFG->calendar_startwday !== '0') { // Week start from sunday.
-            $sdays[] =& $mform->createElement('checkbox', 'Sun', '', get_string('sunday', 'calendar'));
+            $sdays[] = &$mform->createElement('checkbox', 'Sun', '', get_string('sunday', 'calendar'));
         }
-        $mform->addGroup($sdays, 'sdays', get_string('repeaton', 'attendance'), array('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'), true);
+        $mform->addGroup($sdays, 'sdays', get_string('repeaton', 'attendance'), array(
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        ), true);
         $mform->disabledIf('sdays', 'addmultiply', 'notchecked');
 
-        $period = array(1 => 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36);
+        $period = array(
+            1 => 1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+        );
         $periodgroup = array();
-        $periodgroup[] =& $mform->createElement('select', 'period', '', $period, false, true);
-        $periodgroup[] =& $mform->createElement('static', 'perioddesc', '', get_string('week', 'attendance'));
-        $mform->addGroup($periodgroup, 'periodgroup', get_string('repeatevery', 'attendance'), array(' '), false);
+        $periodgroup[] = &$mform->createElement('select', 'period', '', $period, false, true);
+        $periodgroup[] = &$mform->createElement('static', 'perioddesc', '', get_string('week', 'attendance'));
+        $mform->addGroup($periodgroup, 'periodgroup', get_string('repeatevery', 'attendance'), array(
+            ' '
+        ), false);
         $mform->disabledIf('periodgroup', 'addmultiply', 'notchecked');
 
         $mform->addElement('date_selector', 'sessionenddate', get_string('repeatuntil', 'attendance'));
@@ -203,10 +247,10 @@ use DatePeriod;
         $studentscanmark = get_config('attendance', 'studentscanmark');
 
         $mform->addElement('header', 'headerstudentmarking', get_string('studentmarking', 'attendance'), true);
-        if (!empty($pluginconfig->studentrecordingexpanded)) {
+        if (! empty($pluginconfig->studentrecordingexpanded)) {
             $mform->setExpanded('headerstudentmarking');
         }
-        if (!empty($studentscanmark)) {
+        if (! empty($studentscanmark)) {
             $mform->addElement('checkbox', 'studentscanmark', '', get_string('studentscanmark', 'attendance'));
             $mform->addHelpButton('studentscanmark', 'studentscanmark', 'attendance');
         } else {
@@ -221,17 +265,19 @@ use DatePeriod;
         $mform->addHelpButton('automark', 'automark', 'attendance');
         $mform->setDefault('automark', $this->_customdata['att']->automark);
 
-        if (!empty($studentscanmark)) {
+        if (! empty($studentscanmark)) {
             $mgroup = array();
 
-            $mgroup[] = & $mform->createElement('text', 'studentpassword', get_string('studentpassword', 'attendance'));
+            $mgroup[] = &$mform->createElement('text', 'studentpassword', get_string('studentpassword', 'attendance'));
             $mform->disabledif('studentpassword', 'rotateqrcode', 'checked');
-            $mgroup[] = & $mform->createElement('checkbox', 'randompassword', '', get_string('randompassword', 'attendance'));
+            $mgroup[] = &$mform->createElement('checkbox', 'randompassword', '', get_string('randompassword', 'attendance'));
             $mform->disabledif('randompassword', 'rotateqrcode', 'checked');
-            $mgroup[] = & $mform->createElement('checkbox', 'includeqrcode', '', get_string('includeqrcode', 'attendance'));
+            $mgroup[] = &$mform->createElement('checkbox', 'includeqrcode', '', get_string('includeqrcode', 'attendance'));
             $mform->disabledif('includeqrcode', 'rotateqrcode', 'checked');
 
-            $mform->addGroup($mgroup, 'passwordgrp', get_string('passwordgrp', 'attendance'), array(' '), false);
+            $mform->addGroup($mgroup, 'passwordgrp', get_string('passwordgrp', 'attendance'), array(
+                ' '
+            ), false);
 
             $mform->setType('studentpassword', PARAM_TEXT);
             $mform->addHelpButton('passwordgrp', 'passwordgrp', 'attendance');
@@ -266,29 +312,31 @@ use DatePeriod;
             }
         }
         $mgroup2 = array();
-        $mgroup2[] = & $mform->createElement('text', 'subnet', get_string('requiresubnet', 'attendance'));
+        $mgroup2[] = &$mform->createElement('text', 'subnet', get_string('requiresubnet', 'attendance'));
         if (empty(get_config('attendance', 'subnetactivitylevel'))) {
             $mform->setDefault('subnet', get_config('attendance', 'subnet'));
         } else {
             $mform->setDefault('subnet', $this->_customdata['att']->subnet);
         }
 
-        $mgroup2[] = & $mform->createElement('checkbox', 'usedefaultsubnet', get_string('usedefaultsubnet', 'attendance'));
+        $mgroup2[] = &$mform->createElement('checkbox', 'usedefaultsubnet', get_string('usedefaultsubnet', 'attendance'));
         $mform->setDefault('usedefaultsubnet', 1);
         $mform->setType('subnet', PARAM_TEXT);
 
-        $mform->addGroup($mgroup2, 'subnetgrp', get_string('requiresubnet', 'attendance'), array(' '), false);
+        $mform->addGroup($mgroup2, 'subnetgrp', get_string('requiresubnet', 'attendance'), array(
+            ' '
+        ), false);
         $mform->setAdvanced('subnetgrp');
         $mform->addHelpButton('subnetgrp', 'requiresubnet', 'attendance');
         $mform->hideif('subnet', 'usedefaultsubnet', 'checked');
 
         $mgroup3 = array();
         $options = attendance_get_sharedipoptions();
-        $mgroup3[] = & $mform->createElement('select', 'preventsharedip',
-            get_string('preventsharedip', 'attendance'), $options);
-        $mgroup3[] = & $mform->createElement('text', 'preventsharediptime',
-            get_string('preventsharediptime', 'attendance'), '', 'test');
-        $mform->addGroup($mgroup3, 'preventsharedgroup', get_string('preventsharedip', 'attendance'), array(' '), false);
+        $mgroup3[] = &$mform->createElement('select', 'preventsharedip', get_string('preventsharedip', 'attendance'), $options);
+        $mgroup3[] = &$mform->createElement('text', 'preventsharediptime', get_string('preventsharediptime', 'attendance'), '', 'test');
+        $mform->addGroup($mgroup3, 'preventsharedgroup', get_string('preventsharedip', 'attendance'), array(
+            ' '
+        ), false);
         $mform->addHelpButton('preventsharedgroup', 'preventsharedip', 'attendance');
         $mform->setAdvanced('preventsharedgroup');
         $mform->setType('preventsharedip', PARAM_INT);
@@ -306,10 +354,12 @@ use DatePeriod;
 
     /**
      * Perform minimal validation on the settings form
+     *
      * @param array $data
      * @param array $files
      */
-    public function validation($data, $files) {
+    public function validation($data, $files)
+    {
         global $DB;
         $errors = parent::validation($data, $files);
 
@@ -319,8 +369,7 @@ use DatePeriod;
             $errors['sestime'] = get_string('invalidsessionendtime', 'attendance');
         }
 
-        if (!empty($data['addmultiply']) && $data['sessiondate'] != 0 && $data['sessionenddate'] != 0 &&
-                $data['sessionenddate'] < $data['sessiondate']) {
+        if (! empty($data['addmultiply']) && $data['sessiondate'] != 0 && $data['sessionenddate'] != 0 && $data['sessionenddate'] < $data['sessiondate']) {
             $errors['sessionenddate'] = get_string('invalidsessionenddate', 'attendance');
         }
 
@@ -328,13 +377,13 @@ use DatePeriod;
             $errors['groups'] = get_string('errorgroupsnotselected', 'attendance');
         }
 
-        $addmulti = isset($data['addmultiply']) ? (int)$data['addmultiply'] : 0;
-        if (($addmulti != 0) && (!array_key_exists('sdays', $data) || empty($data['sdays']))) {
+        $addmulti = isset($data['addmultiply']) ? (int) $data['addmultiply'] : 0;
+        if (($addmulti != 0) && (! array_key_exists('sdays', $data) || empty($data['sdays']))) {
             $data['sdays'] = array();
             $errors['sdays'] = get_string('required', 'attendance');
         }
         if (isset($data['sdays'])) {
-            if (!$this->checkweekdays($data['sessiondate'], $data['sessionenddate'], $data['sdays']) ) {
+            if (! $this->checkweekdays($data['sessiondate'], $data['sessionenddate'], $data['sdays'])) {
                 $errors['sdays'] = get_string('checkweekdays', 'attendance');
             }
         }
@@ -343,52 +392,61 @@ use DatePeriod;
         }
         $sessstart = $data['sessiondate'] + $sesstarttime;
         if ($sessstart < $data['coursestartdate'] && $sessstart != $data['previoussessiondate']) {
-            $errors['sessiondate'] = get_string('priorto', 'attendance',
-                userdate($data['coursestartdate'], get_string('strftimedmyhm', 'attendance')));
+            $errors['sessiondate'] = get_string('priorto', 'attendance', userdate($data['coursestartdate'], get_string('strftimedmyhm', 'attendance')));
             $this->_form->setConstant('previoussessiondate', $sessstart);
         }
 
-        if (!empty($data['studentscanmark']) && $data['automark'] == ATTENDANCE_AUTOMARK_CLOSE) {
-            $cm            = $this->_customdata['cm'];
+        if (! empty($data['studentscanmark']) && $data['automark'] == ATTENDANCE_AUTOMARK_CLOSE) {
+            $cm = $this->_customdata['cm'];
             // Check that the selected statusset has a status to use when unmarked.
             $sql = 'SELECT id
             FROM {attendance_statuses}
             WHERE deleted = 0 AND (attendanceid = 0 or attendanceid = ?)
             AND setnumber = ? AND setunmarked = 1';
-            $params = array($cm->instance, $data['statusset']);
-            if (!$DB->record_exists_sql($sql, $params)) {
+            $params = array(
+                $cm->instance,
+                $data['statusset']
+            );
+            if (! $DB->record_exists_sql($sql, $params)) {
                 $errors['automark'] = get_string('noabsentstatusset', 'attendance');
             }
         }
 
-        if (!empty($data['studentscanmark']) && !empty($data['preventsharedip']) &&
-                empty($data['preventsharediptime'])) {
+        if (! empty($data['studentscanmark']) && ! empty($data['preventsharedip']) && empty($data['preventsharediptime'])) {
             $errors['preventsharedgroup'] = get_string('iptimemissing', 'attendance');
-
         }
         return $errors;
     }
 
     /**
      * Check weekdays function.
+     *
      * @param int $sessiondate
      * @param int $sessionenddate
      * @param int $sdays
      * @return bool
      */
-    private function checkweekdays($sessiondate, $sessionenddate, $sdays) {
-
+    private function checkweekdays($sessiondate, $sessionenddate, $sdays)
+    {
         $found = false;
 
-        $daysofweek = array(0 => "Sun", 1 => "Mon", 2 => "Tue", 3 => "Wed", 4 => "Thu", 5 => "Fri", 6 => "Sat");
-        $start = new DateTime( date("Y-m-d", $sessiondate) );
+        $daysofweek = array(
+            0 => "Sun",
+            1 => "Mon",
+            2 => "Tue",
+            3 => "Wed",
+            4 => "Thu",
+            5 => "Fri",
+            6 => "Sat"
+        );
+        $start = new DateTime(date("Y-m-d", $sessiondate));
         $interval = new DateInterval('P1D');
-        $end = new DateTime( date("Y-m-d", $sessionenddate) );
-        $end->add( new DateInterval('P1D') );
+        $end = new DateTime(date("Y-m-d", $sessionenddate));
+        $end->add(new DateInterval('P1D'));
 
         $period = new DatePeriod($start, $interval, $end);
         foreach ($period as $date) {
-            if (!$found) {
+            if (! $found) {
                 foreach ($sdays as $name => $value) {
                     $key = array_search($name, $daysofweek);
                     if ($date->format("w") == $key) {
@@ -402,40 +460,73 @@ use DatePeriod;
         return $found;
     }
 
-    function get_modules() {/*
-        $id                     = required_param('id', PARAM_INT);
-        $cm             = get_coursemodule_from_id('attendance', $id, 0, false, MUST_EXIST);
-        $course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);*/
-        
-        echo'<script type="text/javascript">
-            alert("'. $course .'");
-            </script>';
+    function get_modules()
+    {
         $servername = "192.168.9.216";
         $database = "moodle";
         $username = "usuariomoodle";
         $password = "ira491";
         $mysqli = new \MySQLi($servername, $username, $password, $database);
-        
+        $id = required_param('id', PARAM_INT);
+
         if ($mysqli->connect_errno) {
             printf("Conexion fallida: %s\n", $mysqli->connect_error);
             exit();
         }
         $consulta = "SELECT value FROM mdl_config WHERE id = 511";
-        $consulta_modulo = "SELECT module FROM mdl_attendance WHERE course = ?";
         // ? == $course.id
-        
-        $cicle = 'cicle';
-        $curso = 'DAM'; // Category     (Moodle)
-        $modulo = 'M6'; // Curso (Moodle)
+
+        $cicle = 'cicles';
+
+        global $curso_id;
+        global $curso;
+        global $modulo;
+        global $category_id;
+        $query = "SELECT course FROM mdl_course_modules WHERE id = " . $id;
+
+        if ($resultado = $mysqli->query($query)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $curso_id = $fila["course"];
+            }
+            $resultado->free();
+        }
+
+        $query2 = "SELECT shortname FROM mdl_course WHERE id = " . $curso_id;
+        $query3 = "SELECT category FROM mdl_course WHERE id = " . $curso_id;
+
+        if ($resultado = $mysqli->query($query2)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $modulo = $fila["shortname"];
+            }
+            $resultado->free();
+        }
+
+        if ($resultado = $mysqli->query($query3)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $category_id = $fila["category"];
+            }
+            $resultado->free();
+        }
+
+        $query4 = "SELECT name FROM mdl_course_categories WHERE id = " . $category_id;
+
+        if ($resultado = $mysqli->query($query4)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $curso = $fila["name"];
+            }
+            $resultado->free();
+        }
+
+        $curso = substr($curso, 0, - 1);
 
         if ($resultado = $mysqli->query($consulta)) {
             if ($fila = $resultado->fetch_assoc()) {
                 $res = $fila["value"];
-                $arr = json_decode($res,true);
+                $arr = json_decode($res, true);
                 return array_values(preg_grep('/^uf[1-9]/i', array_keys($arr[$cicle][$curso][$modulo])));
             }
             $resultado->free();
         }
-        $mysqli->close(); 
+        $mysqli->close();
     }
 }

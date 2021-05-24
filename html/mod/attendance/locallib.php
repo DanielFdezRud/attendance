@@ -761,7 +761,6 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         }
 
         $wdaydesc = array(0 => 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
-
         while ($sdate < $enddate) {
             if ($sdate < $startweek + WEEKSECS) {
                 $dinfo = usergetdate($sdate);
@@ -770,6 +769,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->sessdate = make_timestamp($dinfo['year'], $dinfo['mon'], $dinfo['mday'],
                         $formdata->sestime['starthour'], $formdata->sestime['startminute']);
                     $sess->duration = $duration;
+                    $sess->uf = "UF2";
                     $sess->descriptionitemid = $formdata->sdescription['itemid'];
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];
@@ -841,6 +841,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess = new stdClass();
         $sess->sessdate = $sessiondate;
         $sess->duration = $duration;
+        $sess->uf = "UF2";
         $sess->descriptionitemid = $formdata->sdescription['itemid'];
         $sess->description = $formdata->sdescription['text'];
         $sess->descriptionformat = $formdata->sdescription['format'];

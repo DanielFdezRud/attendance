@@ -1,0 +1,43 @@
+s:775:"<strong>Output buffer:</strong> array(20) {
+  ["sessdate"]=&gt;
+  int(1621807200)
+  ["duration"]=&gt;
+  int(0)
+  ["description"]=&gt;
+  string(0) ""
+  ["descriptionformat"]=&gt;
+  string(1) "1"
+  ["calendarevent"]=&gt;
+  int(1)
+  ["timemodified"]=&gt;
+  int(1621880259)
+  ["studentscanmark"]=&gt;
+  int(0)
+  ["autoassignstatus"]=&gt;
+  int(0)
+  ["subnet"]=&gt;
+  string(0) ""
+  ["studentpassword"]=&gt;
+  string(0) ""
+  ["automark"]=&gt;
+  int(0)
+  ["automarkcompleted"]=&gt;
+  int(0)
+  ["absenteereport"]=&gt;
+  int(1)
+  ["includeqrcode"]=&gt;
+  int(0)
+  ["rotateqrcode"]=&gt;
+  int(0)
+  ["rotateqrcodesecret"]=&gt;
+  string(0) ""
+  ["preventsharedip"]=&gt;
+  string(1) "2"
+  ["statusset"]=&gt;
+  int(0)
+  ["groupid"]=&gt;
+  int(0)
+  ["attendanceid"]=&gt;
+  string(1) "3"
+}
+";

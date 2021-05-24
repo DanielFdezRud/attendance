@@ -1,0 +1,48 @@
+s:941:"<strong>Output buffer:</strong> array(1) {
+  [0]=&gt;
+  object(stdClass)#390 (21) {
+    ["sessdate"]=&gt;
+    int(1621807200)
+    ["duration"]=&gt;
+    int(0)
+    ["uf"]=&gt;
+    string(3) "UF2"
+    ["descriptionitemid"]=&gt;
+    int(732238311)
+    ["description"]=&gt;
+    string(0) ""
+    ["descriptionformat"]=&gt;
+    string(1) "1"
+    ["calendarevent"]=&gt;
+    int(1)
+    ["timemodified"]=&gt;
+    int(1621879813)
+    ["studentscanmark"]=&gt;
+    int(0)
+    ["autoassignstatus"]=&gt;
+    int(0)
+    ["subnet"]=&gt;
+    string(0) ""
+    ["studentpassword"]=&gt;
+    string(0) ""
+    ["automark"]=&gt;
+    int(0)
+    ["automarkcompleted"]=&gt;
+    int(0)
+    ["absenteereport"]=&gt;
+    int(1)
+    ["includeqrcode"]=&gt;
+    int(0)
+    ["rotateqrcode"]=&gt;
+    int(0)
+    ["rotateqrcodesecret"]=&gt;
+    string(0) ""
+    ["preventsharedip"]=&gt;
+    string(1) "2"
+    ["statusset"]=&gt;
+    int(0)
+    ["groupid"]=&gt;
+    int(0)
+  }
+}
+";

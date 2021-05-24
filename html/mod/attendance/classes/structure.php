@@ -474,7 +474,7 @@ class mod_attendance_structure {
     public function add_session($sess) : int {
         global $DB;
         $config = get_config('attendance');
-
+        //var_dump($sess);
         $sess->attendanceid = $this->id;
         $sess->automarkcompleted = 0;
         if (!isset($sess->automark)) {
@@ -490,7 +490,9 @@ class mod_attendance_structure {
             array('subdirs' => false, 'maxfiles' => -1, 'maxbytes' => 0),
             $sess->description);
         $DB->set_field('attendance_sessions', 'description', $description, array('id' => $sess->id));
-
+        // $sess->uf = $DB->insert_record('attendance_sessions', $sess); //MTO
+        //$DB->set_field('attendance_sessions', 'uf', 'UF1', array('id' => $sess->id));
+        
         $sess->caleventid = 0;
         attendance_create_calendar_event($sess);
 
@@ -536,7 +538,6 @@ class mod_attendance_structure {
         }
         $event->add_record_snapshot('attendance_sessions', $sess);
         $event->trigger();
-
         return $sess->id;
     }
 

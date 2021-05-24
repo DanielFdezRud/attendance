@@ -1,0 +1,19 @@
+s:350:"<strong>Output buffer:</strong> automarkcompleted"]=&gt;
+    int(0)
+    ["absenteereport"]=&gt;
+    int(1)
+    ["includeqrcode"]=&gt;
+    int(0)
+    ["rotateqrcode"]=&gt;
+    int(0)
+    ["rotateqrcodesecret"]=&gt;
+    string(0) ""
+    ["preventsharedip"]=&gt;
+    string(1) "2"
+    ["statusset"]=&gt;
+    int(0)
+    ["groupid"]=&gt;
+    int(0)
+  }
+}
+";
