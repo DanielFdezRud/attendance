@@ -1,0 +1,1 @@
+s:217:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 450 of /lib/outputrenderers.php: TypeError thrown</li><li>line 100 of /mod/attendance/manage.php: call to plugin_renderer_base-&gt;render()</li></ul>";

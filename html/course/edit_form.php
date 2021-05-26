@@ -74,7 +74,7 @@ class course_edit_form extends moodleform {
             $mform->hardFreeze('shortname');
             $mform->setConstant('shortname', $course->shortname);
         }
-        
+
         // Verify permissions to change course category or keep current.
         // SELECT CATEGORY
         if (empty($course->id)) {

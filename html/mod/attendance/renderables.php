@@ -57,7 +57,6 @@ class attendance_tabs implements renderable {
     const TAB_ABSENTEE      = 9;
     /** @var int current tab */
     public $currenttab;
-
     /** @var stdClass attendance */
     private $att;
 
@@ -130,7 +129,6 @@ class attendance_tabs implements renderable {
                                 array('action' => mod_attendance_sessions_page_params::ACTION_UPDATE)),
                                 get_string('changesession', 'attendance'));
         }
-
         return array($toprow);
     }
 }
@@ -712,6 +710,7 @@ class attendance_report_data implements renderable {
         $this->users = $att->get_users($att->pageparams->group, $att->pageparams->page);
 
         if (isset($att->pageparams->userids)) {
+            $prueba = 'hola';
             foreach ($this->users as $key => $user) {
                 if (!in_array($user->id, $att->pageparams->userids)) {
                     unset($this->users[$key]);

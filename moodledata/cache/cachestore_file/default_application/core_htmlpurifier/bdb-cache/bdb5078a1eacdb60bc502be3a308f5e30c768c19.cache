@@ -1,0 +1,1 @@
+s:275:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 150 of /mod/attendance/renderables.php: ParseError thrown</li><li>line 28 of /mod/attendance/locallib.php: call to require_once()</li><li>line 27 of /mod/attendance/view.php: call to require_once()</li></ul>";

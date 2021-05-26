@@ -724,6 +724,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
     $sesendtime = $formdata->sestime['endhour'] * HOURSECS + $formdata->sestime['endminute'] * MINSECS;
     $sessiondate = $formdata->sessiondate + $sesstarttime;
     $duration = $sesendtime - $sesstarttime;
+    $uf = $formdata->uf;
+    $module = $formdata->module;
     if (empty(get_config('attendance', 'enablewarnings'))) {
         $absenteereport = get_config('attendance', 'absenteereport_default');
     } else {
@@ -769,7 +771,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->sessdate = make_timestamp($dinfo['year'], $dinfo['mon'], $dinfo['mday'],
                         $formdata->sestime['starthour'], $formdata->sestime['startminute']);
                     $sess->duration = $duration;
-                    $sess->uf = "UF2";
+                    $sess->uf = $uf;
+                    $sess->module = $module;
                     $sess->descriptionitemid = $formdata->sdescription['itemid'];
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];
@@ -841,7 +844,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess = new stdClass();
         $sess->sessdate = $sessiondate;
         $sess->duration = $duration;
-        $sess->uf = "UF2";
+        $sess->uf = $uf;
+        $sess->module = $module;
         $sess->descriptionitemid = $formdata->sdescription['itemid'];
         $sess->description = $formdata->sdescription['text'];
         $sess->descriptionformat = $formdata->sdescription['format'];

@@ -1099,7 +1099,7 @@ abstract class moodle_database {
      * @param bool $usecache Flag to use internal cacheing. The default is true.
      * @return database_column_info[] of database_column_info objects indexed with column names
      */
-    public function get_columns($table, $usecache = true): array {
+    public function get_columns($table, $usecache = false): array {
         if (!$table) { // Table not specified, return empty array directly.
             return [];
         }

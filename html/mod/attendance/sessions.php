@@ -74,10 +74,9 @@ switch ($att->pageparams->action) {
 
         
         if ($formdata = $mform->get_data()) {
-            //var_dump($formdata);
+
             $sessions = attendance_construct_sessions_data_for_add($formdata, $att);
-            //var_dump($att);
-            //var_dump($sessions);
+
             $att->add_sessions($sessions);
             if (count($sessions) == 1) {
                 $message = get_string('sessiongenerated', 'attendance');
@@ -230,3 +229,5 @@ echo $output->render($tabs);
 $mform->display();
 
 echo $OUTPUT->footer();
+echo "<script src='../../lib/jquery.js'></script>";
+echo "<script src='./classes/form/cicles.js'></script>";

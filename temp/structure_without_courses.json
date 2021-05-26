@@ -3,17 +3,19 @@
 		"DAM":{
 			"M1":{
 				"nom":"Sistemes informàtics",
-				"uf1":{
-					"nom":"Instal·lació, configuració i explotació del sistema informàtic",
-					"hores":49
-				},
-				"uf2":{
-					"nom":"Gestió de la informació i de recursos en una xarxa",
-					"hores":69
-				},
-				"uf3":{
-					"nom":"Implantació de programari específic",
-					"hores":14
+				"ufs":{
+					"uf1":{
+						"nom":"Instal·lació, configuració i explotació del sistema informàtic",
+						"hores":49
+					},
+					"uf2":{
+						"nom":"Gestió de la informació i de recursos en una xarxa",
+						"hores":69
+					},
+					"uf3":{
+						"nom":"Implantació de programari específic",
+						"hores":14
+					}
 				},
 				"hores_min":132,
 				"hores_hld":0,

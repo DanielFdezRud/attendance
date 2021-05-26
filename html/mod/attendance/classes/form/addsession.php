@@ -133,12 +133,18 @@ class addsession extends moodleform
             'context' => $modcontext
         ));
         $mform->setType('sdescription', PARAM_RAW);
-        
+
+
+        // CODIGO
         $displaylist = addsession::get_modules();
-        $mform->addElement('select', 'uf', 'Modul del curs' , $displaylist);
+        $mform->addElement('select', 'module', 'Modul del curs' , $displaylist);
+        $mform->addHelpButton('module', 'coursecategory');
+        $mform->setDefault('module', 'M1');
+
+        $displaylist = addsession::get_ufs();
+        $mform->addElement('select', 'uf', 'Uf del modul' , $displaylist);
         $mform->addHelpButton('uf', 'coursecategory');
         $mform->setDefault('uf', 'UF1');
-        
 
         if (! empty($pluginconfig->enablecalendar)) {
             $mform->addElement('checkbox', 'calendarevent', '', get_string('calendarevent', 'attendance'));
@@ -459,8 +465,66 @@ class addsession extends moodleform
 
         return $found;
     }
+    function get_modules(){
+        $servername = "192.168.9.216";
+        $database = "moodle";
+        $username = "usuariomoodle";
+        $password = "ira491";
+        $mysqli = new \MySQLi($servername, $username, $password, $database);
+        $id = required_param('id', PARAM_INT);
 
-    function get_modules()
+        if ($mysqli->connect_errno) {
+            printf("Conexion fallida: %s\n", $mysqli->connect_error);
+            exit();
+        }
+        $consulta = "SELECT value FROM mdl_config WHERE id = 511";
+
+
+        $cicle = 'cicles';
+
+        global $curso_id;
+        global $curso;
+        global $category_id;
+        $query = "SELECT course FROM mdl_course_modules WHERE id = " . $id;
+
+        if ($resultado = $mysqli->query($query)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $curso_id = $fila["course"];
+            }
+            $resultado->free();
+        }
+
+        $query3 = "SELECT category FROM mdl_course WHERE id = " . $curso_id;
+
+        if ($resultado = $mysqli->query($query3)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $category_id = $fila["category"];
+            }
+            $resultado->free();
+        }
+
+        $query4 = "SELECT name FROM mdl_course_categories WHERE id = " . $category_id;
+
+        if ($resultado = $mysqli->query($query4)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $curso = $fila["name"];
+            }
+            $resultado->free();
+        }
+
+        $curso = substr($curso, 0, - 1);
+
+        if ($resultado = $mysqli->query($consulta)) {
+            if ($fila = $resultado->fetch_assoc()) {
+                $res = $fila["value"];
+                $arr = json_decode($res, true);
+                return array_keys($arr[$cicle][$curso]);
+            }
+            $resultado->free();
+        }
+        $mysqli->close();
+    }
+    function get_ufs()
     {
         $servername = "192.168.9.216";
         $database = "moodle";
