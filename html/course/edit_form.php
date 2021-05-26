@@ -34,11 +34,9 @@ class course_edit_form extends moodleform {
 
         if (!empty($course->id)) {
             $coursecontext = context_course::instance($course->id);
-            $modulecontext = context_module::instance($module->id);
             $context = $coursecontext;
         } else {
             $coursecontext = null;
-            $modulecontext = null;
             $context = $categorycontext;
         }
 
@@ -107,25 +105,6 @@ class course_edit_form extends moodleform {
                 $mform->setConstant('category', $course->category);
             }
         }
-        $currentCategory = core_course_category::get($course->category, MUST_EXIST, true)
-        ->get_formatted_name();        
-         /*echo "<script>
-                alert('".."');
-        </script>";*/
-
-        //SELECT MODULE
-        if (empty($course->id)) {
-            if ($categorycontext != null) {
-                $displaylist = course_edit_form::get_modules();
-                $mform->addElement('select', 'module', 'Modul del curs', $displaylist);
-                $mform->addHelpButton('module', 'modulecategory');
-                $mform->setDefault('module', 0);
-            } else {
-                $mform->addElement('hidden', 'module', null);
-                $mform->setType('module', PARAM_INT);
-                $mform->setConstant('module', 0);
-            }
-        }                
         
         $choices = array();
         $choices['0'] = get_string('hide');
@@ -486,33 +465,5 @@ class course_edit_form extends moodleform {
 
         return $errors;
     }
-    
-    function get_modules() {
-        $servername = "192.168.9.216";
-        $database = "moodle";
-        $username = "usuariomoodle";
-        $password = "ira491";
-        $mysqli = new mysqli($servername, $username, $password, $database);
-        
-        if ($mysqli->connect_errno) {
-            printf("Conexion fallida: %s\n", $mysqli->connect_error);
-            exit();
-        }
-        
-        $consulta = "SELECT value FROM mdl_config WHERE id = 511";
-        
-        if ($resultado = $mysqli->query($consulta)) {
-            while ($fila = $resultado->fetch_assoc()) {
-                
-                $res = $fila["value"];
-                //print_r($res);
-                $arr = json_decode($res,true);
-                return array_keys($arr['cicle']['DAM']);
-            }
-            $resultado->free();
-        }
-        $mysqli->close(); 
-    }
 }
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

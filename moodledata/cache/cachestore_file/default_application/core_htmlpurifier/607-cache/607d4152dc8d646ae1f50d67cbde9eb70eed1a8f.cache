@@ -1,0 +1,1 @@
+s:276:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 119 of /course/edit_form.php: Error thrown</li><li>line 214 of /lib/formslib.php: call to course_edit_form-&gt;definition()</li><li>line 154 of /course/edit.php: call to moodleform-&gt;__construct()</li></ul>";

@@ -474,7 +474,7 @@ class addsession extends moodleform
             exit();
         }
         $consulta = "SELECT value FROM mdl_config WHERE id = 511";
-        // ? == $course.id
+
 
         $cicle = 'cicles';
 

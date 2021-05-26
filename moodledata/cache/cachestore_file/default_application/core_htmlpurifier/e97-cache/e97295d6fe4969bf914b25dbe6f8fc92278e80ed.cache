@@ -1,0 +1,5 @@
+s:381:"<strong>Output buffer:</strong> &lt;br /&gt;
+&lt;b&gt;Notice&lt;/b&gt;:  Undefined variable: module in &lt;b&gt;/var/www/html/course/edit_form.php&lt;/b&gt; on line &lt;b&gt;37&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Notice&lt;/b&gt;:  Trying to get property 'id' of non-object in &lt;b&gt;/var/www/html/course/edit_form.php&lt;/b&gt; on line &lt;b&gt;37&lt;/b&gt;&lt;br /&gt;
+";
