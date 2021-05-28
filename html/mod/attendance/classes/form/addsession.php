@@ -141,7 +141,7 @@ class addsession extends moodleform
         $mform->addHelpButton('module', 'coursecategory');
         $mform->setDefault('module', 'M1');
 
-        $displaylist = addsession::get_ufs();
+        $displaylist = array('UF1','UF2','UF3','UF4','UF5','UF6','UF7','UF8','UF9','UF10');
         $mform->addElement('select', 'uf', 'Uf del modul' , $displaylist);
         $mform->addHelpButton('uf', 'coursecategory');
         $mform->setDefault('uf', 'UF1');
@@ -472,15 +472,12 @@ class addsession extends moodleform
         $password = "ira491";
         $mysqli = new \MySQLi($servername, $username, $password, $database);
         $id = required_param('id', PARAM_INT);
-
         if ($mysqli->connect_errno) {
             printf("Conexion fallida: %s\n", $mysqli->connect_error);
             exit();
         }
         $consulta = "SELECT value FROM mdl_config WHERE id = 511";
 
-
-        $cicle = 'cicles';
 
         global $curso_id;
         global $curso;
@@ -518,79 +515,13 @@ class addsession extends moodleform
             if ($fila = $resultado->fetch_assoc()) {
                 $res = $fila["value"];
                 $arr = json_decode($res, true);
-                return array_keys($arr[$cicle][$curso]);
+                return array_keys($arr[$curso]);
             }
             $resultado->free();
         }
         $mysqli->close();
     }
-    function get_ufs()
-    {
-        $servername = "192.168.9.216";
-        $database = "moodle";
-        $username = "usuariomoodle";
-        $password = "ira491";
-        $mysqli = new \MySQLi($servername, $username, $password, $database);
-        $id = required_param('id', PARAM_INT);
-
-        if ($mysqli->connect_errno) {
-            printf("Conexion fallida: %s\n", $mysqli->connect_error);
-            exit();
-        }
-        $consulta = "SELECT value FROM mdl_config WHERE id = 511";
-
-
-        $cicle = 'cicles';
-
-        global $curso_id;
-        global $curso;
-        global $modulo;
-        global $category_id;
-        $query = "SELECT course FROM mdl_course_modules WHERE id = " . $id;
-
-        if ($resultado = $mysqli->query($query)) {
-            if ($fila = $resultado->fetch_assoc()) {
-                $curso_id = $fila["course"];
-            }
-            $resultado->free();
-        }
-
-        $query2 = "SELECT shortname FROM mdl_course WHERE id = " . $curso_id;
-        $query3 = "SELECT category FROM mdl_course WHERE id = " . $curso_id;
-
-        if ($resultado = $mysqli->query($query2)) {
-            if ($fila = $resultado->fetch_assoc()) {
-                $modulo = $fila["shortname"];
-            }
-            $resultado->free();
-        }
-
-        if ($resultado = $mysqli->query($query3)) {
-            if ($fila = $resultado->fetch_assoc()) {
-                $category_id = $fila["category"];
-            }
-            $resultado->free();
-        }
-
-        $query4 = "SELECT name FROM mdl_course_categories WHERE id = " . $category_id;
-
-        if ($resultado = $mysqli->query($query4)) {
-            if ($fila = $resultado->fetch_assoc()) {
-                $curso = $fila["name"];
-            }
-            $resultado->free();
-        }
-
-        $curso = substr($curso, 0, - 1);
-
-        if ($resultado = $mysqli->query($consulta)) {
-            if ($fila = $resultado->fetch_assoc()) {
-                $res = $fila["value"];
-                $arr = json_decode($res, true);
-                return array_values(preg_grep('/^uf[1-9]/i', array_keys($arr[$cicle][$curso][$modulo])));
-            }
-            $resultado->free();
-        }
-        $mysqli->close();
+    function getID(){
+        return required_param('id',PARAM_INT);
     }
 }

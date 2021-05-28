@@ -15,6 +15,10 @@ if ($resultado = $mysqli->query($consulta)) {
         $res = $fila["value"];
         echo json_encode($res);
     }
+    /*if($reg = $resultado->fetch_object()){
+        $data = ['cicles' => $reg->value];
+        echo json_encode($data);
+    }*/
     $resultado->free();
 }
 $mysqli->close();

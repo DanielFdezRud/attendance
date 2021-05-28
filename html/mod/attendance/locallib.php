@@ -671,18 +671,61 @@ function attendance_exporttotableed($data, $filename, $format) {
             $myxls->merge_cells($i, $j - 1, $i, $j);
         } else {
             $myxls->write($i, $j, $cell, $formatbc);
+            if ($cell == 'Percentatge'){
+                $attendance_column_non_justified = $j;
+            }
+            if ($cell == '% Justificades'){
+                $attendance_column_justified = $j;
+            }
         }
         $j++;
     }
     $i++;
     $j = 0;
+    $attendance_75 = 0;
+    $attendance_10_25 = 0;
+    $attendance_25_75 = 0;
+    $attendance_5_25_non_justified = 0;
     foreach ($data->table as $row) {
         foreach ($row as $cell) {
-            $myxls->write($i, $j++, $cell);
+            $myxls->write($i, $j, $cell);
+            if ($attendance_column_non_justified == $j){
+                if ((float)$cell < 25){
+                    $myxls->write($i, ++$j, "Suspes");
+                    $attendance_75++;
+                }
+                if ((float)$cell > 5 and (float)$cell < 25){
+                    $attendance_5_25_non_justified++;
+                }
+
+                $attendance_percent = (float)$cell;
+
+
+            }
+            if ($attendance_column_justified == $j){
+                $justified_and_non_justified = $attendance_percent - (float)$cell;
+                if ($justified_and_non_justified > 10 and $justified_and_non_justified < 25) {
+                    $attendance_10_25++;
+                }
+
+                if ($justified_and_non_justified > 25 and $justified_and_non_justified < 75) {
+                    $attendance_25_75++;
+                }
+            }
+            $j++;
         }
         $i++;
         $j = 0;
     }
+    $i++;
+    $myxls->write($i, 0, "Alumnos con mas de un 75% de faltas:");
+    $myxls->write($i, 1, $attendance_75);
+    $myxls->write(++$i, 0, "Alumnos entre 5% y 25% de faltas SIN JUSTIFICAR:");
+    $myxls->write($i, 1, $attendance_5_25_non_justified);
+    $myxls->write(++$i, 0, "Alumnos entre 10% y 25% de faltas JUSTIFICADAS y SIN JUSTIFICAR:");
+    $myxls->write($i, 1, $attendance_10_25);
+    $myxls->write(++$i, 0, "Alumnos entre 25% y 75% de faltas JUSTIFICADAS y SIN JUSTIFICAR:");
+    $myxls->write($i, 1, $attendance_25_75);
     $workbook->close();
 }
 
@@ -703,7 +746,7 @@ function attendance_exporttocsv($data, $filename) {
     header("Pragma: public");
 
     echo get_string('course')."\t".$data->course."\n";
-    echo get_string('group')."\t".$data->group."\n\n";
+    echo get_string('group')."\t".$data->group."\n";
 
     echo implode("\t", $data->tabhead)."\n";
     foreach ($data->table as $row) {
@@ -724,8 +767,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
     $sesendtime = $formdata->sestime['endhour'] * HOURSECS + $formdata->sestime['endminute'] * MINSECS;
     $sessiondate = $formdata->sessiondate + $sesstarttime;
     $duration = $sesendtime - $sesstarttime;
-    $uf = $formdata->uf;
     $module = $formdata->module;
+    $uf = $formdata->uf;
     if (empty(get_config('attendance', 'enablewarnings'))) {
         $absenteereport = get_config('attendance', 'absenteereport_default');
     } else {
@@ -771,8 +814,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->sessdate = make_timestamp($dinfo['year'], $dinfo['mon'], $dinfo['mday'],
                         $formdata->sestime['starthour'], $formdata->sestime['startminute']);
                     $sess->duration = $duration;
-                    $sess->uf = $uf;
                     $sess->module = $module;
+                    $sess->uf = $uf;
                     $sess->descriptionitemid = $formdata->sdescription['itemid'];
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];

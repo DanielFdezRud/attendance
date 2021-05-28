@@ -710,7 +710,6 @@ class attendance_report_data implements renderable {
         $this->users = $att->get_users($att->pageparams->group, $att->pageparams->page);
 
         if (isset($att->pageparams->userids)) {
-            $prueba = 'hola';
             foreach ($this->users as $key => $user) {
                 if (!in_array($user->id, $att->pageparams->userids)) {
                     unset($this->users[$key]);

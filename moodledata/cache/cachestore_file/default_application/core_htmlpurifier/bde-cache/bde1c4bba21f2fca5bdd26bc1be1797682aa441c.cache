@@ -1,0 +1,1 @@
+s:207:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 428 of /lib/setuplib.php: coding_exception thrown</li><li>line 191 of /mod/attendance/export.php: call to default_error_handler()</li></ul>";

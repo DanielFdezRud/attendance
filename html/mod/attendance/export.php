@@ -147,6 +147,7 @@ if ($formdata = $mform->get_data()) {
         $data->tabhead[] = get_string('takensessions', 'attendance');
         $data->tabhead[] = get_string('points', 'attendance');
         $data->tabhead[] = get_string('percentage', 'attendance');
+        $data->tabhead[] = "% Justificades";
 
         $i = 0;
         $data->table = array();
@@ -185,9 +186,13 @@ if ($formdata = $mform->get_data()) {
 
             $usersummary = $reportdata->summary->get_taken_sessions_summary_for($user->id);
 
+            $justified = 0;
             foreach ($reportdata->statuses as $sts) {
                 if (isset($usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym])) {
                     $data->table[$i][] = $usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym];
+                    if ($sts->acronym == 'J'){
+                        $justified = $usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym];
+                    }
                 } else {
                     $data->table[$i][] = 0;
                 }
@@ -196,6 +201,7 @@ if ($formdata = $mform->get_data()) {
             $data->table[$i][] = $usersummary->numtakensessions;
             $data->table[$i][] = $usersummary->pointssessionscompleted;
             $data->table[$i][] = format_float($usersummary->takensessionspercentage * 100);
+            $data->table[$i][] = format_float(($justified / $usersummary->numtakensessions) * 100);
 
             $i++;
         }

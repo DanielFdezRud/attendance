@@ -1,0 +1,5 @@
+s:989:"<strong>Output buffer:</strong> &lt;div class="notifytiny debuggingmessage" data-rel="debugging"&gt;Did you remember to call setType() for 'nom'? Defaulting to PARAM_RAW cleaning.&lt;ul style="text-align: left" data-rel="backtrace"&gt;&lt;li&gt;line 1395 of /lib/formslib.php: call to debugging()&lt;/li&gt;&lt;li&gt;line 322 of /lib/formslib.php: call to moodleform-&gt;detectMissingSetType()&lt;/li&gt;&lt;li&gt;line 228 of /lib/formslib.php: call to moodleform-&gt;_process_submission()&lt;/li&gt;&lt;li&gt;line 69 of /mod/attendance/sessions.php: call to moodleform-&gt;__construct()&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;br /&gt;
+&lt;b&gt;Notice&lt;/b&gt;:  Undefined property: stdClass::$module in &lt;b&gt;/var/www/html/mod/attendance/locallib.php&lt;/b&gt; on line &lt;b&gt;727&lt;/b&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Notice&lt;/b&gt;:  Undefined property: stdClass::$uf in &lt;b&gt;/var/www/html/mod/attendance/locallib.php&lt;/b&gt; on line &lt;b&gt;728&lt;/b&gt;&lt;br /&gt;
+";
