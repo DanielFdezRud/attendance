@@ -115,6 +115,19 @@ class updatesession extends \moodleform {
                            array('rows' => 1, 'columns' => 80), $defopts);
         $mform->setType('sdescription', PARAM_RAW);
 
+        // CODIGO
+        $displaylist = addsession::get_modules();
+        $mform->addElement('select', 'module', 'Modul del curs' , $displaylist);
+        $mform->addHelpButton('module', 'coursecategory');
+        $mform->addRule('module', 'Falta el modul', 'required', null, 'client');
+        $mform->setDefault('module', 'M1');
+
+        $displaylist = array('UF1','UF2','UF3','UF4','UF5','UF6','UF7','UF8','UF9','UF10');
+        $mform->addElement('select', 'uf', 'Uf del modul' , $displaylist);
+        $mform->addHelpButton('uf', 'coursecategory');
+        $mform->addRule('uf', 'Falta la uf', 'required', null, 'client');
+        $mform->setDefault('uf', 'UF1');
+
         if (!empty(get_config('attendance', 'enablecalendar'))) {
             $mform->addElement('checkbox', 'calendarevent', '', get_string('calendarevent', 'attendance'));
             $mform->addHelpButton('calendarevent', 'calendarevent', 'attendance');
@@ -128,13 +141,6 @@ class updatesession extends \moodleform {
             $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
             $mform->addHelpButton('absenteereport', 'includeabsentee', 'attendance');
         }
-
-
-        //SELECT MODULE
-        $displaylist = addsession::get_modules();
-        $mform->addElement('select', 'module', 'Modul del curs', $displaylist);
-        $mform->addHelpButton('module', 'coursecategory');
-        $mform->setDefault('module', 0);
 
         // Students can mark own attendance.
         $studentscanmark = get_config('attendance', 'studentscanmark');

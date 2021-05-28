@@ -1,13 +1,10 @@
 <?php
-
-$caca = new \mod_attendance\form\addsession();
-
 $servername = "192.168.9.216";
 $database = "moodle";
 $username = "usuariomoodle";
 $password = "ira491";
-$mysqli = new \MySQLi($servername, $username, $password, $database);
-$id = $caca->getID();
+$mysqli = new MySQLi($servername, $username, $password, $database);
+$id =  $_POST['idAtt'];
 
 if ($mysqli->connect_errno) {
     printf("Conexion fallida: %s\n", $mysqli->connect_error);
@@ -35,11 +32,11 @@ if ($resultado = $mysqli->query($query3)) {
 $query4 = "SELECT name FROM mdl_course_categories WHERE id = " . $category_id;
 
 if ($resultado = $mysqli->query($query4)) {
-if ($fila = $resultado->fetch_assoc()) {
-    $curso = $fila["name"];
-    echo json_encode($curso);
+    if ($fila = $resultado->fetch_assoc()) {
+        $curso = $fila["name"];
+        echo json_encode($curso);
+    }
+    $resultado->free();
 }
-$resultado->free();
-
 ?>
 

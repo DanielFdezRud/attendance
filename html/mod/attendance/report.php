@@ -84,5 +84,5 @@ echo $output->render($header);
 echo $output->render($tabs);
 echo $output->render($filtercontrols);
 echo $output->render($reportdata);
-echo $output->footer();<
+echo $output->footer();
 

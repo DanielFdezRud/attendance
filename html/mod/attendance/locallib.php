@@ -638,30 +638,20 @@ function attendance_can_student_mark($sess, $log = true) {
  * @param string $format excel|ods
  *
  */
-function attendance_exporttotableed($data, $filename, $format) {
-    global $CFG;
-
-    if ($format === 'excel') {
-        require_once("$CFG->libdir/excellib.class.php");
-        $filename .= ".xls";
-        $workbook = new MoodleExcelWorkbook("-");
-    } else {
-        require_once("$CFG->libdir/odslib.class.php");
-        $filename .= ".ods";
-        $workbook = new MoodleODSWorkbook("-");
-    }
-    // Sending HTTP headers.
-    $workbook->send($filename);
+function attendance_exporttotableed($data, $workbook, $page_name) {
     // Creating the first worksheet.
-    $myxls = $workbook->add_worksheet(get_string('modulenameplural', 'attendance'));
+    $myxls = $workbook->add_worksheet($page_name);
     // Format types.
     $formatbc = $workbook->add_format();
     $formatbc->set_bold(1);
 
-    $myxls->write(0, 0, get_string('course'), $formatbc);
-    $myxls->write(0, 1, $data->course);
-    $myxls->write(1, 0, get_string('group'), $formatbc);
-    $myxls->write(1, 1, $data->group);
+    $myxls->write(0, 0, "IES Marianao", $formatbc);
+    $myxls->write(1, 0, get_string('course'), $formatbc);
+    $myxls->write(1, 1, $data->course);
+    $myxls->write(2, 0, get_string('group'), $formatbc);
+    $myxls->write(2, 1, $data->group);
+
+    
 
     $i = 3;
     $j = 0;
@@ -718,14 +708,28 @@ function attendance_exporttotableed($data, $filename, $format) {
         $j = 0;
     }
     $i++;
-    $myxls->write($i, 0, "Alumnos con mas de un 75% de faltas:");
+    $myxls->write($i, 0, "Alumnos con mas de un 75% de faltas:", $formatbc);
     $myxls->write($i, 1, $attendance_75);
-    $myxls->write(++$i, 0, "Alumnos entre 5% y 25% de faltas SIN JUSTIFICAR:");
+    $myxls->write(++$i, 0, "Alumnos entre 5% y 25% de faltas SIN JUSTIFICAR:", $formatbc);
     $myxls->write($i, 1, $attendance_5_25_non_justified);
-    $myxls->write(++$i, 0, "Alumnos entre 10% y 25% de faltas JUSTIFICADAS y SIN JUSTIFICAR:");
+    $myxls->write(++$i, 0, "Alumnos entre 10% y 25% de faltas JUSTIFICADAS y SIN JUSTIFICAR:", $formatbc);
     $myxls->write($i, 1, $attendance_10_25);
-    $myxls->write(++$i, 0, "Alumnos entre 25% y 75% de faltas JUSTIFICADAS y SIN JUSTIFICAR:");
+    $myxls->write(++$i, 0, "Alumnos entre 25% y 75% de faltas JUSTIFICADAS y SIN JUSTIFICAR:", $formatbc);
     $myxls->write($i, 1, $attendance_25_75);
+}
+
+function create_workbook($filename){
+    global $CFG;
+
+    require_once("$CFG->libdir/excellib.class.php");
+    $filename .= ".xls";
+    $workbook = new MoodleExcelWorkbook("-");
+    // Sending HTTP headers.
+    $workbook->send($filename);
+    return $workbook;
+}
+
+function close_workbook($workbook){
     $workbook->close();
 }
 

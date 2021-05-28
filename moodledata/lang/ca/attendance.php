@@ -535,6 +535,7 @@ $string['tuseremail'] = 'Correu electrònic';
 $string['tusername'] = 'Nom complet';
 $string['unknowngroup'] = 'Grup desconegut';
 $string['update'] = 'Actualitza';
+$string['uf'] = 'Selecciona la UF del modul';
 $string['usedefaultsubnet'] = 'Ús per defecte';
 $string['usemessageform'] = 'o utilitzeu el següent formulari per enviar un missatge als estudiants seleccionats';
 $string['userexists'] = 'Ja hi ha un usuari real amb aquesta adreça de correu electrònic';

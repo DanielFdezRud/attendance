@@ -134,16 +134,15 @@ class addsession extends moodleform
         ));
         $mform->setType('sdescription', PARAM_RAW);
 
-
         // CODIGO
         $displaylist = addsession::get_modules();
         $mform->addElement('select', 'module', 'Modul del curs' , $displaylist);
-        $mform->addHelpButton('module', 'coursecategory');
+        $mform->addRule('module', 'Falta el modul', 'required', null, 'client');
         $mform->setDefault('module', 'M1');
 
         $displaylist = array('UF1','UF2','UF3','UF4','UF5','UF6','UF7','UF8','UF9','UF10');
-        $mform->addElement('select', 'uf', 'Uf del modul' , $displaylist);
-        $mform->addHelpButton('uf', 'coursecategory');
+        $mform->addElement('select',     'uf', 'Uf del modul' , $displaylist);
+        $mform->addRule('uf', 'Falta la uf', 'required', null, 'client');
         $mform->setDefault('uf', 'UF1');
 
         if (! empty($pluginconfig->enablecalendar)) {
