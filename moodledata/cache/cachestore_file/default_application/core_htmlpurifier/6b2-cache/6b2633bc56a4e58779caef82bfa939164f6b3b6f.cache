@@ -1,0 +1,1 @@
+s:188:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 240 of /mod/attendance/export.php: Error thrown</li><li>line 64 of /mod/attendance/export.php: call to getUf()</li></ul>";

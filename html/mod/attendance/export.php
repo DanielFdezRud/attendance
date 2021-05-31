@@ -53,63 +53,6 @@ $PAGE->navbar->add(get_string('export', 'attendance'));
 $formparams = array('course' => $course, 'cm' => $cm, 'modcontext' => $context);
 $mform = new mod_attendance\form\export($att->url_export(), $formparams);
 
-function getUf($id_module){
-    $servername = "192.168.9.216";
-    $database = "moodle";
-    $username = "usuariomoodle";
-    $password = "ira491";
-    $mysqli = new \MySQLi($servername, $username, $password, $database);
-
-    if ($mysqli->connect_errno) {
-        printf("Conexion fallida: %s\n", $mysqli->connect_error);
-        exit();
-    }
-
-    $query2 = "SELECT shortname FROM mdl_course WHERE id = " . $id_module;
-    $query3 = "SELECT category FROM mdl_course WHERE id = " . $id_module;
-
-    if ($resultado = $mysqli->query($query2)) {
-        if ($fila = $resultado->fetch_assoc()) {
-            $modulo = $fila["shortname"];
-        }
-        $resultado->free();
-    }
-
-    if ($resultado = $mysqli->query($query3)) {
-        if ($fila = $resultado->fetch_assoc()) {
-            $category_id = $fila["category"];
-        }
-        $resultado->free();
-    }
-
-    $query4 = "SELECT name FROM mdl_course_categories WHERE id = " . $category_id;
-
-    if ($resultado = $mysqli->query($query4)) {
-        if ($fila = $resultado->fetch_assoc()) {
-            $curso = $fila["name"];
-        }
-        $resultado->free();
-    }
-
-    $curso = substr($curso ,0,-1);
-
-    $consulta = "SELECT value FROM mdl_config WHERE id = 511";
-    
-    if ($resultado = $mysqli->query($consulta)) {
-        if ($fila = $resultado->fetch_assoc()) {
-            $res = $fila["value"];
-            $arr = json_decode($res, true);
-            $ufs = array_values(preg_grep('/^uf[1-9]/i', array_keys($arr[$curso][$modulo])));
-            $mysqli->close();
-            return count($ufs) + 1;
-        }
-        $resultado->free();
-    }
-    $mysqli->close();
-
-    return 0;
-}
-
 if ($formdata = $mform->get_data()) {
 
     $pageparams = new mod_attendance_page_with_filter_controls();
@@ -121,10 +64,10 @@ if ($formdata = $mform->get_data()) {
     $numberUFs = getUf($id_module);
     $currentUF = 0;
     $arr_ufs[0] = "Fecha";
-    for ($i = 1; $i < $numberUFs; $i++){
+    for ($i = 1; $i < $numberUFs; $i++) {
         $arr_ufs[$i] = "UF".$i;
     }
-
+    $workbook = null;
     while($currentUF < $numberUFs){
         if (isset($formdata->includeallsessions)) {
             if (isset($formdata->includenottaken)) {
@@ -135,14 +78,13 @@ if ($formdata = $mform->get_data()) {
             }
             $pageparams->init_start_end_date();
         } else {
-            if ($currentUF == 0){
+            if ($currentUF == 0) {
                 $pageparams->startdate = $formdata->sessionstartdate;
                 $pageparams->enddate = $formdata->sessionenddate;
             }else{
-                //TODO
-                //$pageparams->startdate = consulta BBDD valor minimo;
-                //$pageparams->enddate = consulta BBDD valor maximo;
-                //
+                //TODO 86400
+                $pageparams->startdate = getFirstDate($currentUF, $att->id);
+                $pageparams->enddate = getLastDate($currentUF, $att->id)+86400;
             }
         }
         if ($formdata->selectedusers) {
@@ -258,7 +200,6 @@ if ($formdata = $mform->get_data()) {
                 $data->table[$i] = array_merge($data->table[$i], $cellsgenerator->get_cells(isset($formdata->includeremarks)));
 
                 $usersummary = $reportdata->summary->get_taken_sessions_summary_for($user->id);
-
                 $justified = 0;
                 foreach ($reportdata->statuses as $sts) {
                     if (isset($usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym])) {
@@ -274,20 +215,29 @@ if ($formdata = $mform->get_data()) {
                 $data->table[$i][] = $usersummary->numtakensessions;
                 $data->table[$i][] = $usersummary->pointssessionscompleted;
                 $data->table[$i][] = format_float($usersummary->takensessionspercentage * 100);
-                $data->table[$i][] = format_float(($justified / $usersummary->numtakensessions) * 100);
+
+                if ($usersummary->numtakensessions == 0){
+                    $data->table[$i][] = format_float(0);
+                }else{
+                    $data->table[$i][] = format_float(($justified / $usersummary->numtakensessions) * 100);
+                }
+
 
                 $i++;
             }
-            if ($currentUF == 0){
+            if ($currentUF == 0) {
                 $workbook = create_workbook($filename);
             }
-            attendance_exporttotableed($data, $workbook,$arr_ufs[$currentUF]);
+            attendance_exporttotableed($data, $workbook, $arr_ufs[$currentUF]);
             $currentUF++;
+            if ($currentUF == $numberUFs){
+                close_workbook($workbook);
+                exit;
+            }
         } else {
             print_error('studentsnotfound', 'attendance', $att->url_manage());
         }
     }
-    close_workbook($workbook);
 }
 
 $output = $PAGE->get_renderer('mod_attendance');
@@ -297,7 +247,95 @@ echo $output->heading(get_string('attendanceforthecourse', 'attendance').' :: ' 
 echo $output->render($tabs);
 
 $mform->display();
+
 echo $OUTPUT->footer();
 
+function getConnection(){
+    $servername = "192.168.9.216";
+    $database = "moodle";
+    $username = "usuariomoodle";
+    $password = "ira491";
+    $mysqli = new \MySQLi($servername, $username, $password, $database);
+
+    if ($mysqli->connect_errno) {
+        printf("Conexion fallida: %s\n", $mysqli->connect_error);
+        exit();
+    }
+    return $mysqli;
+}
+
+function getUf($id_module){
+    $mysqli = getConnection();
+
+    $query2 = "SELECT shortname FROM mdl_course WHERE id = " . $id_module;
+    $query3 = "SELECT category FROM mdl_course WHERE id = " . $id_module;
+
+    if ($resultado = $mysqli->query($query2)) {
+        if ($fila = $resultado->fetch_assoc()) {
+            $modulo = $fila["shortname"];
+        }
+        $resultado->free();
+    }
+
+    if ($resultado = $mysqli->query($query3)) {
+        if ($fila = $resultado->fetch_assoc()) {
+            $category_id = $fila["category"];
+        }
+        $resultado->free();
+    }
+
+    $query4 = "SELECT name FROM mdl_course_categories WHERE id = " . $category_id;
+
+    if ($resultado = $mysqli->query($query4)) {
+        if ($fila = $resultado->fetch_assoc()) {
+            $curso = $fila["name"];
+        }
+        $resultado->free();
+    }
+
+    $curso = substr($curso ,0,-1);
+
+    $consulta = "SELECT value FROM mdl_config WHERE id = 511";
+
+    if ($resultado = $mysqli->query($consulta)) {
+        if ($fila = $resultado->fetch_assoc()) {
+            $res = $fila["value"];
+            $arr = json_decode($res, true);
+            $ufs = array_values(preg_grep('/^uf[1-9]/i', array_keys($arr[$curso][$modulo])));
+            $mysqli->close();
+            return count($ufs) + 1;
+        }
+        $resultado->free();
+    }
+    $mysqli->close();
+
+    return 0;
+}
+function getFirstDate($uf,$id){
+    $mysqli = getConnection();
+
+    $query = "SELECT MIN(sessdate) FROM mdl_attendance_sessions WHERE attendanceid = ".$id." AND uf = ".($uf -1)." GROUP BY attendanceid";
 
 
+    if ($resultado = $mysqli->query($query)) {
+        if ($fila = $resultado->fetch_assoc()) {
+            $fecha = $fila["MIN(sessdate)"];
+            return $fecha;
+
+        }
+        $resultado->free();
+    }
+}
+function getLastDate($uf,$id){
+    $mysqli = getConnection();
+
+    $query = "SELECT MAX(sessdate) FROM mdl_attendance_sessions WHERE attendanceid = ".$id." AND uf = ".($uf -1)." GROUP BY attendanceid";
+
+    if ($resultado = $mysqli->query($query)) {
+        if ($fila = $resultado->fetch_assoc()) {
+            $fecha = $fila["MAX(sessdate)"];
+            return $fecha;
+        }
+        $resultado->free();
+    }
+}

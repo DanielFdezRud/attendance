@@ -71,10 +71,10 @@ function attendance_get_statuses($attid, $onlyvisible=true, $statusset = -1) {
 
     if ($onlyvisible) {
         $statuses = $DB->get_records_select('attendance_statuses', "attendanceid = :aid AND visible = 1 AND deleted = 0 $setsql",
-                                            $params, 'setnumber ASC, grade DESC');
+            $params, 'setnumber ASC, grade DESC');
     } else {
         $statuses = $DB->get_records_select('attendance_statuses', "attendanceid = :aid AND deleted = 0 $setsql",
-                                            $params, 'setnumber ASC, grade DESC');
+            $params, 'setnumber ASC, grade DESC');
     }
 
     return $statuses;
@@ -189,7 +189,7 @@ function attendance_get_user_sessions_log_full($userid, $pageparams) {
             $cmid = $modinfo->instances['attendance'][$sess->attendanceid]->get_course_module_record()->id;
             $ctx = context_module::instance($cmid);
             $sess->description = file_rewrite_pluginfile_urls($sess->description,
-            'pluginfile.php', $ctx->id, 'mod_attendance', 'session', $sess->id);
+                'pluginfile.php', $ctx->id, 'mod_attendance', 'session', $sess->id);
         }
     }
 
@@ -434,8 +434,8 @@ function attendance_add_status($status) {
             'objectid' => $status->attendanceid,
             'context' => $status->context,
             'other' => array('acronym' => $status->acronym,
-                             'description' => $status->description,
-                             'grade' => $status->grade)));
+                'description' => $status->description,
+                'grade' => $status->grade)));
         if (!empty($status->cm)) {
             $event->add_record_snapshot('course_modules', $status->cm);
         }
@@ -651,8 +651,6 @@ function attendance_exporttotableed($data, $workbook, $page_name) {
     $myxls->write(2, 0, get_string('group'), $formatbc);
     $myxls->write(2, 1, $data->group);
 
-    
-
     $i = 3;
     $j = 0;
     foreach ($data->tabhead as $cell) {
@@ -750,7 +748,7 @@ function attendance_exporttocsv($data, $filename) {
     header("Pragma: public");
 
     echo get_string('course')."\t".$data->course."\n";
-    echo get_string('group')."\t".$data->group."\n";
+    echo get_string('group')."\t".$data->group."\n\n";
 
     echo implode("\t", $data->tabhead)."\n";
     foreach ($data->table as $row) {
@@ -771,8 +769,6 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
     $sesendtime = $formdata->sestime['endhour'] * HOURSECS + $formdata->sestime['endminute'] * MINSECS;
     $sessiondate = $formdata->sessiondate + $sesstarttime;
     $duration = $sesendtime - $sesstarttime;
-    $module = $formdata->module;
-    $uf = $formdata->uf;
     if (empty(get_config('attendance', 'enablewarnings'))) {
         $absenteereport = get_config('attendance', 'absenteereport_default');
     } else {
@@ -810,6 +806,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         }
 
         $wdaydesc = array(0 => 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+
         while ($sdate < $enddate) {
             if ($sdate < $startweek + WEEKSECS) {
                 $dinfo = usergetdate($sdate);
@@ -818,8 +815,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->sessdate = make_timestamp($dinfo['year'], $dinfo['mon'], $dinfo['mday'],
                         $formdata->sestime['starthour'], $formdata->sestime['startminute']);
                     $sess->duration = $duration;
-                    $sess->module = $module;
-                    $sess->uf = $uf;
+                    $sess->uf = $formdata->uf;
+                    $sess->module = $formdata->module;
                     $sess->descriptionitemid = $formdata->sdescription['itemid'];
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];
@@ -891,8 +888,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess = new stdClass();
         $sess->sessdate = $sessiondate;
         $sess->duration = $duration;
-        $sess->uf = $uf;
-        $sess->module = $module;
+        $sess->uf = $formdata->uf;
+        $sess->module = $formdata->module;
         $sess->descriptionitemid = $formdata->sdescription['itemid'];
         $sess->description = $formdata->sdescription['text'];
         $sess->descriptionformat = $formdata->sdescription['format'];

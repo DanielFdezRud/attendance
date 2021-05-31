@@ -83,7 +83,7 @@ class addsession extends moodleform
                 break;
         }
         if ($groupmode == SEPARATEGROUPS or $groupmode == VISIBLEGROUPS) {
-            if ($groupmode == SEPARATEGROUPS and ! has_capability('moodle/site:accessallgroups', $modcontext)) {
+            if ($groupmode == SEPARATEGROUPS and !has_capability('moodle/site:accessallgroups', $modcontext)) {
                 $groups = groups_get_all_groups($course->id, $USER->id, $cm->groupingid);
             } else {
                 $groups = groups_get_all_groups($course->id, 0, $cm->groupingid);
@@ -141,11 +141,10 @@ class addsession extends moodleform
         $mform->setDefault('module', 'M1');
 
         $displaylist = array('UF1','UF2','UF3','UF4','UF5','UF6','UF7','UF8','UF9','UF10');
-        $mform->addElement('select',     'uf', 'Uf del modul' , $displaylist);
+        $mform->addElement('select','uf', 'Uf del modul' , $displaylist);
         $mform->addRule('uf', 'Falta la uf', 'required', null, 'client');
-        $mform->setDefault('uf', 'UF1');
 
-        if (! empty($pluginconfig->enablecalendar)) {
+        if (!empty($pluginconfig->enablecalendar)) {
             $mform->addElement('checkbox', 'calendarevent', '', get_string('calendarevent', 'attendance'));
             $mform->addHelpButton('calendarevent', 'calendarevent', 'attendance');
             if (isset($pluginconfig->calendarevent_default)) {
@@ -157,7 +156,7 @@ class addsession extends moodleform
         }
 
         // If warnings allow selector for reporting.
-        if (! empty(get_config('attendance', 'enablewarnings'))) {
+        if (!empty(get_config('attendance', 'enablewarnings'))) {
             $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
             $mform->addHelpButton('absenteereport', 'includeabsentee', 'attendance');
             if (isset($pluginconfig->absenteereport_default)) {
@@ -169,7 +168,7 @@ class addsession extends moodleform
         }
         // For multiple sessions.
         $mform->addElement('header', 'headeraddmultiplesessions', get_string('addmultiplesessions', 'attendance'));
-        if (! empty($pluginconfig->multisessionexpanded)) {
+        if (!empty($pluginconfig->multisessionexpanded)) {
             $mform->setExpanded('headeraddmultiplesessions');
         }
         $mform->addElement('checkbox', 'addmultiply', '', get_string('repeatasfollows', 'attendance'));
@@ -270,7 +269,7 @@ class addsession extends moodleform
         $mform->addHelpButton('automark', 'automark', 'attendance');
         $mform->setDefault('automark', $this->_customdata['att']->automark);
 
-        if (! empty($studentscanmark)) {
+        if (!empty($studentscanmark)) {
             $mgroup = array();
 
             $mgroup[] = &$mform->createElement('text', 'studentpassword', get_string('studentpassword', 'attendance'));
@@ -374,7 +373,7 @@ class addsession extends moodleform
             $errors['sestime'] = get_string('invalidsessionendtime', 'attendance');
         }
 
-        if (! empty($data['addmultiply']) && $data['sessiondate'] != 0 && $data['sessionenddate'] != 0 && $data['sessionenddate'] < $data['sessiondate']) {
+        if (!empty($data['addmultiply']) && $data['sessiondate'] != 0 && $data['sessionenddate'] != 0 && $data['sessionenddate'] < $data['sessiondate']) {
             $errors['sessionenddate'] = get_string('invalidsessionenddate', 'attendance');
         }
 
@@ -388,7 +387,7 @@ class addsession extends moodleform
             $errors['sdays'] = get_string('required', 'attendance');
         }
         if (isset($data['sdays'])) {
-            if (! $this->checkweekdays($data['sessiondate'], $data['sessionenddate'], $data['sdays'])) {
+            if (!$this->checkweekdays($data['sessiondate'], $data['sessionenddate'], $data['sdays'])) {
                 $errors['sdays'] = get_string('checkweekdays', 'attendance');
             }
         }
@@ -401,7 +400,7 @@ class addsession extends moodleform
             $this->_form->setConstant('previoussessiondate', $sessstart);
         }
 
-        if (! empty($data['studentscanmark']) && $data['automark'] == ATTENDANCE_AUTOMARK_CLOSE) {
+        if (!empty($data['studentscanmark']) && $data['automark'] == ATTENDANCE_AUTOMARK_CLOSE) {
             $cm = $this->_customdata['cm'];
             // Check that the selected statusset has a status to use when unmarked.
             $sql = 'SELECT id
@@ -417,7 +416,7 @@ class addsession extends moodleform
             }
         }
 
-        if (! empty($data['studentscanmark']) && ! empty($data['preventsharedip']) && empty($data['preventsharediptime'])) {
+        if (!empty($data['studentscanmark']) && !empty($data['preventsharedip']) && empty($data['preventsharediptime'])) {
             $errors['preventsharedgroup'] = get_string('iptimemissing', 'attendance');
         }
         return $errors;
