@@ -336,11 +336,12 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 get_string('time', 'attendance'),
                 get_string('sessiontypeshort', 'attendance'),
                 get_string('description', 'attendance'),
+                'UF',
                 get_string('actions'),
                 html_writer::checkbox('cb_selector', 0, false, '', array('id' => 'cb_selector'))
             );
-        $table->align = array('', 'right', '', '', 'left', 'right', 'center');
-        $table->size = array('1px', '1px', '1px', '', '*', '120px', '1px');
+        $table->align = array('', 'right', '', '', 'left', 'left', 'center','center'); //último left
+        $table->size = array('1px', '1px', '1px', '', '*', '120px', '','1px'); //5px
 
         $i = 0;
         foreach ($sessdata->sessions as $key => $sess) {
@@ -365,6 +366,7 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 $table->data[$sess->id][] = get_string('commonsession', 'attendance');
             }
             $table->data[$sess->id][] = $sess->description;
+            $table->data[$sess->id][] = ('UF' . ($sess->uf + 1));
             $table->data[$sess->id][] = $dta['actions'];
             $table->data[$sess->id][] = html_writer::checkbox('sessid[]', $sess->id, false, '',
                                                               array('class' => 'attendancesesscheckbox'));

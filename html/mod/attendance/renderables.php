@@ -301,6 +301,7 @@ class attendance_manage_data implements renderable {
         $this->hiddensessionscount = $att->get_hidden_sessions_count();
 
         $this->att = $att;
+
     }
 
     /**

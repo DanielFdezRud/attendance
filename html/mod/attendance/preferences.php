@@ -166,5 +166,4 @@ echo $output->render($tabs);
 echo $OUTPUT->box(get_string('preferences_desc', 'attendance'), 'generalbox attendancedesc', 'notice');
 echo $output->render($setselector);
 echo $output->render($prefdata);
-
 echo $output->footer();

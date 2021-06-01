@@ -105,12 +105,6 @@ class export extends \moodleform {
         $ident = array();
         $checkedfields = array();
 
-        $adminsetfields = get_config('attendance', 'customexportfields');
-        if (in_array('id', explode(',', $adminsetfields))) {
-            $ident[] =& $mform->createElement('checkbox', 'id', '', get_string('studentid', 'attendance'));
-            $checkedfields['ident[id]'] = true;
-        }
-
         $extrafields = get_extra_user_fields($modcontext);
         foreach ($extrafields as $field) {
             $ident[] =& $mform->createElement('checkbox',  $field, '', get_string( $field));
@@ -137,22 +131,14 @@ class export extends \moodleform {
         }
         $mform->setType('id', PARAM_INT);
 
-        $mform->addElement('checkbox', 'includeallsessions', get_string('includeall', 'attendance'), get_string('yes'));
-        $mform->setDefault('includeallsessions', true);
-        $mform->addElement('checkbox', 'includenottaken', get_string('includenottaken', 'attendance'), get_string('yes'));
+
         $mform->addElement('checkbox', 'includeremarks', get_string('includeremarks', 'attendance'), get_string('yes'));
-        $mform->addElement('checkbox', 'includedescription', get_string('includedescription', 'attendance'), get_string('yes'));
         $mform->addElement('date_selector', 'sessionstartdate', get_string('startofperiod', 'attendance'));
         $mform->setDefault('sessionstartdate', $course->startdate);
         $mform->disabledIf('sessionstartdate', 'includeallsessions', 'checked');
         $mform->addElement('date_selector', 'sessionenddate', get_string('endofperiod', 'attendance'));
         $mform->disabledIf('sessionenddate', 'includeallsessions', 'checked');
-
-        $formatoptions = array('excel' => get_string('downloadexcel', 'attendance'),
-                               'ooo' => get_string('downloadooo', 'attendance'),
-                               'text' => get_string('downloadtext', 'attendance'));
-        $mform->addElement('select', 'format', get_string('format'), $formatoptions);
-
+        
         $submitstring = get_string('ok');
         $this->add_action_buttons(false, $submitstring);
 

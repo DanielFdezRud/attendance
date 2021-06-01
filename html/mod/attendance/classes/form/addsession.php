@@ -192,50 +192,7 @@ class addsession extends moodleform
         ), true);
         $mform->disabledIf('sdays', 'addmultiply', 'notchecked');
 
-        $period = array(
-            1 => 1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33,
-            34,
-            35,
-            36
-        );
-        $periodgroup = array();
-        $periodgroup[] = &$mform->createElement('select', 'period', '', $period, false, true);
-        $periodgroup[] = &$mform->createElement('static', 'perioddesc', '', get_string('week', 'attendance'));
-        $mform->addGroup($periodgroup, 'periodgroup', get_string('repeatevery', 'attendance'), array(
-            ' '
-        ), false);
+
         $mform->disabledIf('periodgroup', 'addmultiply', 'notchecked');
 
         $mform->addElement('date_selector', 'sessionenddate', get_string('repeatuntil', 'attendance'));

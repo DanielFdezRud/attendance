@@ -1,0 +1,19 @@
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [info] instantiating backup controller b353588c3d3d8dc197c445777d6dc43a
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting controller status to 100
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] loading controller plan
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting controller status to 300
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] applying plan defaults
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting controller status to 400
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting file inclusion to 
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [info] checking plan security
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting controller status to 700
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] saving controller to db
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] calculating controller checksum 438a1ffa9202ad976d6acc5315c7a882
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] loading controller from db
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting file inclusion to 1
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] setting controller status to 800
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] saving controller to db
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] calculating controller checksum 6a03a97530804c544f8975793d5814a0
+[dimarts, 1 de juny de 2021, 18:53:55 CEST] [debug] loading controller from db
+[dimarts, 1 de juny de 2021, 18:53:56 CEST] [debug] setting controller status to 1000
+[dimarts, 1 de juny de 2021, 18:53:56 CEST] [debug] saving controller to db

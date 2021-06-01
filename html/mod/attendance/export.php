@@ -64,178 +64,170 @@ if ($formdata = $mform->get_data()) {
     $numberUFs = getUf($id_module);
     $currentUF = 0;
     $arr_ufs[0] = "Fecha";
+    $workbook_created = false;
     for ($i = 1; $i < $numberUFs; $i++) {
         $arr_ufs[$i] = "UF".$i;
     }
     $workbook = null;
     while($currentUF < $numberUFs){
-        if (isset($formdata->includeallsessions)) {
-            if (isset($formdata->includenottaken)) {
-                $pageparams->view = ATT_VIEW_ALL;
-            } else {
-                $pageparams->view = ATT_VIEW_ALLPAST;
-                $pageparams->curdate = time();
-            }
-            $pageparams->init_start_end_date();
-        } else {
-            if ($currentUF == 0) {
-                $pageparams->startdate = $formdata->sessionstartdate;
-                $pageparams->enddate = $formdata->sessionenddate;
-            }else{
-                //TODO 86400
-                $pageparams->startdate = getFirstDate($currentUF, $att->id);
-                $pageparams->enddate = getLastDate($currentUF, $att->id)+86400;
-            }
+        if ($currentUF == 0) {
+            $pageparams->startdate = $formdata->sessionstartdate;
+            $pageparams->enddate = $formdata->sessionenddate;
+        }else{
+            $pageparams->startdate = getFirstDate($currentUF, $att->id);
+            $pageparams->enddate = getLastDate($currentUF, $att->id)+86400;
+
         }
-        if ($formdata->selectedusers) {
-            $pageparams->userids = $formdata->users;
-        }
-        $att->pageparams = $pageparams;
 
-        $reportdata = new attendance_report_data($att);
-        if ($reportdata->users) {
-            $filename = clean_filename($course->shortname . '_' .
-                get_string('modulenameplural', 'attendance') .
-                '_' . userdate(time(), '%Y%m%d-%H%M'));
-
-            $group = $formdata->group ? $reportdata->groups[$formdata->group] : 0;
-            $data = new stdClass;
-            $data->tabhead = array();
-            $data->course = $att->course->fullname;
-            $data->group = $group ? $group->name : get_string('allparticipants');
-
-            $data->tabhead[] = get_string('lastname');
-            $data->tabhead[] = get_string('firstname');
-            $groupmode = groups_get_activity_groupmode($cm, $course);
-            if (!empty($groupmode)) {
-                $data->tabhead[] = get_string('groups');
+        if ($pageparams->startdate != null){
+            if ($formdata->selectedusers) {
+                $pageparams->userids = $formdata->users;
             }
-            require_once($CFG->dirroot . '/user/profile/lib.php');
-            $customfields = profile_get_custom_fields(false);
+            $att->pageparams = $pageparams;
 
-            if (isset($formdata->ident)) {
-                foreach (array_keys($formdata->ident) as $opt) {
-                    if ($opt == 'id') {
-                        $data->tabhead[] = get_string('studentid', 'attendance');
-                    } else if (in_array($opt, array_column($customfields, 'shortname'))) {
-                        foreach ($customfields as $customfield) {
-                            if ($opt == $customfield->shortname) {
-                                $data->tabhead[] = format_string($customfield->name, true, array('context' => $context));
-                            }
-                        }
-                    } else {
-                        $data->tabhead[] = get_string($opt);
-                    }
-                }
-            }
+            $reportdata = new attendance_report_data($att);
+            if ($reportdata->users) {
+                $filename = clean_filename($course->shortname . '_' .
+                    get_string('modulenameplural', 'attendance') .
+                    '_' . userdate(time(), '%Y%m%d-%H%M'));
 
-            if (count($reportdata->sessions) > 0) {
-                foreach ($reportdata->sessions as $sess) {
-                    $text = userdate($sess->sessdate, get_string('strftimedmyhm', 'attendance'));
-                    $text .= ' ';
-                    if (!empty($sess->groupid) && empty($reportdata->groups[$sess->groupid])) {
-                        $text .= get_string('deletedgroup', 'attendance');
-                    } else {
-                        $text .= $sess->groupid ? $reportdata->groups[$sess->groupid]->name : get_string('commonsession', 'attendance');
-                    }
-                    if (isset($formdata->includedescription) && !empty($sess->description)) {
-                        $text .= " " . strip_tags($sess->description);
-                    }
-                    $data->tabhead[] = $text;
-                    if (isset($formdata->includeremarks)) {
-                        $data->tabhead[] = ''; // Space for the remarks.
-                    }
-                }
-            } else {
-                print_error('sessionsnotfound', 'attendance', $att->url_manage());
-            }
+                $group = $formdata->group ? $reportdata->groups[$formdata->group] : 0;
+                $data = new stdClass;
+                $data->tabhead = array();
+                $data->course = $att->course->fullname;
+                $data->group = $group ? $group->name : get_string('allparticipants');
 
-            $setnumber = -1;
-            foreach ($reportdata->statuses as $sts) {
-                if ($sts->setnumber != $setnumber) {
-                    $setnumber = $sts->setnumber;
-                }
-
-                $data->tabhead[] = $sts->acronym;
-            }
-
-            $data->tabhead[] = get_string('takensessions', 'attendance');
-            $data->tabhead[] = get_string('points', 'attendance');
-            $data->tabhead[] = get_string('percentage', 'attendance');
-            $data->tabhead[] = "% Justificades";
-
-            $i = 0;
-            $data->table = array();
-            foreach ($reportdata->users as $user) {
-                profile_load_custom_fields($user);
-
-                $data->table[$i][] = $user->lastname;
-                $data->table[$i][] = $user->firstname;
+                $data->tabhead[] = get_string('lastname');
+                $data->tabhead[] = get_string('firstname');
+                $groupmode = groups_get_activity_groupmode($cm, $course);
                 if (!empty($groupmode)) {
-                    $grouptext = '';
-                    $groupsraw = groups_get_all_groups($course->id, $user->id, 0, 'g.name');
-                    $groups = array();
-                    foreach ($groupsraw as $group) {
-                        $groups[] = $group->name;;
-                    }
-                    $data->table[$i][] = implode(', ', $groups);
+                    $data->tabhead[] = get_string('groups');
                 }
+                require_once($CFG->dirroot . '/user/profile/lib.php');
+                $customfields = profile_get_custom_fields(false);
 
                 if (isset($formdata->ident)) {
                     foreach (array_keys($formdata->ident) as $opt) {
-                        if (in_array($opt, array_column($customfields, 'shortname'))) {
-                            if (isset($user->profile[$opt])) {
-                                $data->table[$i][] = format_string($user->profile[$opt], true, array('context' => $context));
-                            } else {
-                                $data->table[$i][] = '';
+                        if ($opt == 'id') {
+                            $data->tabhead[] = get_string('studentid', 'attendance');
+                        } else if (in_array($opt, array_column($customfields, 'shortname'))) {
+                            foreach ($customfields as $customfield) {
+                                if ($opt == $customfield->shortname) {
+                                    $data->tabhead[] = format_string($customfield->name, true, array('context' => $context));
+                                }
                             }
-                            continue;
+                        } else {
+                            $data->tabhead[] = get_string($opt);
                         }
-
-                        $data->table[$i][] = $user->$opt;
                     }
                 }
 
-                $cellsgenerator = new user_sessions_cells_text_generator($reportdata, $user);
-                $data->table[$i] = array_merge($data->table[$i], $cellsgenerator->get_cells(isset($formdata->includeremarks)));
+                if (count($reportdata->sessions) > 0) {
+                    foreach ($reportdata->sessions as $sess) {
+                        $text = userdate($sess->sessdate, get_string('strftimedmyhm', 'attendance'));
+                        $text .= ' ';
+                        if (!empty($sess->groupid) && empty($reportdata->groups[$sess->groupid])) {
+                            $text .= get_string('deletedgroup', 'attendance');
+                        } else {
+                            $text .= $sess->groupid ? $reportdata->groups[$sess->groupid]->name : get_string('commonsession', 'attendance');
+                        }
+                        $data->tabhead[] = $text;
+                        if (isset($formdata->includeremarks)) {
+                            $data->tabhead[] = ''; // Space for the remarks.
+                        }
+                    }
+                } else {
+                    print_error('sessionsnotfound', 'attendance', $att->url_manage());
+                }
 
-                $usersummary = $reportdata->summary->get_taken_sessions_summary_for($user->id);
-                $justified = 0;
+                $setnumber = -1;
                 foreach ($reportdata->statuses as $sts) {
-                    if (isset($usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym])) {
-                        $data->table[$i][] = $usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym];
-                        if ($sts->acronym == 'J') {
-                            $justified = $usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym];
-                        }
-                    } else {
-                        $data->table[$i][] = 0;
+                    if ($sts->setnumber != $setnumber) {
+                        $setnumber = $sts->setnumber;
                     }
+
+                    $data->tabhead[] = $sts->acronym;
                 }
 
-                $data->table[$i][] = $usersummary->numtakensessions;
-                $data->table[$i][] = $usersummary->pointssessionscompleted;
-                $data->table[$i][] = format_float($usersummary->takensessionspercentage * 100);
+                $data->tabhead[] = get_string('takensessions', 'attendance');
+                $data->tabhead[] = get_string('points', 'attendance');
+                $data->tabhead[] = get_string('percentage', 'attendance');
+                $data->tabhead[] = "% Justificades";
 
-                if ($usersummary->numtakensessions == 0){
-                    $data->table[$i][] = format_float(0);
-                }else{
-                    $data->table[$i][] = format_float(($justified / $usersummary->numtakensessions) * 100);
+                $i = 0;
+                $data->table = array();
+                foreach ($reportdata->users as $user) {
+                    profile_load_custom_fields($user);
+
+                    $data->table[$i][] = $user->lastname;
+                    $data->table[$i][] = $user->firstname;
+                    if (!empty($groupmode)) {
+                        $grouptext = '';
+                        $groupsraw = groups_get_all_groups($course->id, $user->id, 0, 'g.name');
+                        $groups = array();
+                        foreach ($groupsraw as $group) {
+                            $groups[] = $group->name;;
+                        }
+                        $data->table[$i][] = implode(', ', $groups);
+                    }
+
+                    if (isset($formdata->ident)) {
+                        foreach (array_keys($formdata->ident) as $opt) {
+                            if (in_array($opt, array_column($customfields, 'shortname'))) {
+                                if (isset($user->profile[$opt])) {
+                                    $data->table[$i][] = format_string($user->profile[$opt], true, array('context' => $context));
+                                } else {
+                                    $data->table[$i][] = '';
+                                }
+                                continue;
+                            }
+
+                            $data->table[$i][] = $user->$opt;
+                        }
+                    }
+
+                    $cellsgenerator = new user_sessions_cells_text_generator($reportdata, $user);
+                    $data->table[$i] = array_merge($data->table[$i], $cellsgenerator->get_cells(isset($formdata->includeremarks)));
+
+                    $usersummary = $reportdata->summary->get_taken_sessions_summary_for($user->id);
+                    $justified = 0;
+                    foreach ($reportdata->statuses as $sts) {
+                        if (isset($usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym])) {
+                            $data->table[$i][] = $usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym];
+                            if ($sts->acronym == 'J') {
+                                $justified = $usersummary->userstakensessionsbyacronym[$sts->setnumber][$sts->acronym];
+                            }
+                        } else {
+                            $data->table[$i][] = 0;
+                        }
+                    }
+
+                    $data->table[$i][] = $usersummary->numtakensessions;
+                    $data->table[$i][] = $usersummary->pointssessionscompleted;
+                    $data->table[$i][] = format_float($usersummary->takensessionspercentage * 100);
+
+                    if ($usersummary->numtakensessions == 0){
+                        $data->table[$i][] = format_float(0);
+                    }else{
+                        $data->table[$i][] = format_float(($justified / $usersummary->numtakensessions) * 100);
+                    }
+
+
+                    $i++;
                 }
-
-
-                $i++;
+                if (!$workbook_created) {
+                    $workbook = create_workbook($filename);
+                    $workbook_created = true;
+                }
+                attendance_exporttotableed($data, $workbook, $arr_ufs[$currentUF]);
+            } else {
+                print_error('studentsnotfound', 'attendance', $att->url_manage());
             }
-            if ($currentUF == 0) {
-                $workbook = create_workbook($filename);
-            }
-            attendance_exporttotableed($data, $workbook, $arr_ufs[$currentUF]);
-            $currentUF++;
-            if ($currentUF == $numberUFs){
-                close_workbook($workbook);
-                exit;
-            }
-        } else {
-            print_error('studentsnotfound', 'attendance', $att->url_manage());
+        }
+        $currentUF++;
+        if ($currentUF == $numberUFs){
+            close_workbook($workbook);
+            exit;
         }
     }
 }
