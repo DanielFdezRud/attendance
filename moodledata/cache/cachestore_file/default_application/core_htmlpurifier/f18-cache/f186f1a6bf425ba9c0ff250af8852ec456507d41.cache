@@ -1,0 +1,6 @@
+s:411:"<p>Mostra estadístiques de totes les sessions, incloses aquelles que encara no s'han cursat (passat i futur):</p>
+
+<ul><li><strong>Sessions</strong>: nombre total de sessions.</li>
+    <li><strong>Points</strong>: punts atorgats en funció de les sessions registrades.</li>
+    <li><strong>Percentage</strong>: percentatge de punts atorgats al màxim de punts possibles per a totes les sessions.</li>
+    </ul>";

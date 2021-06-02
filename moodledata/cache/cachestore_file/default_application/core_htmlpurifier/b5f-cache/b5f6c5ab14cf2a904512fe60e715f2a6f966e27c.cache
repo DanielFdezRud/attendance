@@ -1,0 +1,5 @@
+s:376:"<p>Mostra la puntuació que pot assolir cada usuari si reben els punts màxims de cada sessió que encara no s'ha cursat (passat i futur):</p>
+
+<ul><li><strong>Points</strong>: la puntuació màxima que cada usuari pot assolir en totes les sessions.</li>
+    <li><strong>Percentage</strong>: percentatge màxim que cada usuari pot assolir en totes les sessions.</li>
+    </ul>";

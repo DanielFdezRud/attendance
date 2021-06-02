@@ -1,0 +1,1 @@
+s:201:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 721 of /mod/attendance/locallib.php: Error thrown</li><li>line 218 of /mod/attendance/export.php: call to create_workbook()</li></ul>";

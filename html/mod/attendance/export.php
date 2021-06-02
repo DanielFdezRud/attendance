@@ -76,7 +76,6 @@ if ($formdata = $mform->get_data()) {
         }else{
             $pageparams->startdate = getFirstDate($currentUF, $att->id);
             $pageparams->enddate = getLastDate($currentUF, $att->id)+86400;
-
         }
 
         if ($pageparams->startdate != null){
@@ -226,6 +225,7 @@ if ($formdata = $mform->get_data()) {
         }
         $currentUF++;
         if ($currentUF == $numberUFs){
+
             close_workbook($workbook);
             exit;
         }

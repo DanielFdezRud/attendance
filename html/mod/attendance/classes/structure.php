@@ -474,7 +474,6 @@ class mod_attendance_structure {
     public function add_session($sess) : int {
         global $DB;
         $config = get_config('attendance');
-        //var_dump($sess);
         $sess->attendanceid = $this->id;
         $sess->automarkcompleted = 0;
         if (!isset($sess->automark)) {

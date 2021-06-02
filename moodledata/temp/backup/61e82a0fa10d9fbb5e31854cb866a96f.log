@@ -1,0 +1,36 @@
+[dimecres, 2 de juny de 2021, 17:42:10 CEST] [info] instantiating backup controller 61e82a0fa10d9fbb5e31854cb866a96f
+[dimecres, 2 de juny de 2021, 17:42:10 CEST] [debug] setting controller status to 100
+[dimecres, 2 de juny de 2021, 17:42:10 CEST] [debug] loading controller plan
+[dimecres, 2 de juny de 2021, 17:42:10 CEST] [debug] setting controller status to 300
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [debug] applying plan defaults
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [debug] setting controller status to 400
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [debug] setting file inclusion to 
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [debug] setting controller status to 500
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [debug] saving controller to db
+[dimecres, 2 de juny de 2021, 17:42:11 CEST] [debug] calculating controller checksum 915bd5562baefba507389d7b7a180bcb
+[dimecres, 2 de juny de 2021, 17:42:18 CEST] [debug] loading controller from db
+[dimecres, 2 de juny de 2021, 17:42:18 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:18 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:18 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:18 CEST] [debug] saving controller to db
+[dimecres, 2 de juny de 2021, 17:42:18 CEST] [debug] calculating controller checksum 915bd5562baefba507389d7b7a180bcb
+[dimecres, 2 de juny de 2021, 17:42:21 CEST] [debug] loading controller from db
+[dimecres, 2 de juny de 2021, 17:42:21 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:21 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:21 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:21 CEST] [debug] saving controller to db
+[dimecres, 2 de juny de 2021, 17:42:21 CEST] [debug] calculating controller checksum 915bd5562baefba507389d7b7a180bcb
+[dimecres, 2 de juny de 2021, 17:42:32 CEST] [debug] loading controller from db
+[dimecres, 2 de juny de 2021, 17:42:32 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:32 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:32 CEST] [debug] saving controller to db
+[dimecres, 2 de juny de 2021, 17:42:32 CEST] [debug] calculating controller checksum 915bd5562baefba507389d7b7a180bcb
+[dimecres, 2 de juny de 2021, 17:42:34 CEST] [debug] loading controller from db
+[dimecres, 2 de juny de 2021, 17:42:34 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:34 CEST] [info] checking plan security
+[dimecres, 2 de juny de 2021, 17:42:34 CEST] [debug] saving controller to db
+[dimecres, 2 de juny de 2021, 17:42:34 CEST] [debug] calculating controller checksum 915bd5562baefba507389d7b7a180bcb

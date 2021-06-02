@@ -1,0 +1,1 @@
+s:283:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 428 of /lib/setuplib.php: coding_exception thrown</li><li>line 728 of /mod/attendance/locallib.php: call to default_error_handler()</li><li>line 218 of /mod/attendance/export.php: call to create_workbook()</li></ul>";

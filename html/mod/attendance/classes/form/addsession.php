@@ -420,7 +420,7 @@ class addsession extends moodleform
 
         return $found;
     }
-    function get_modules(){
+    public static function get_modules(){
         $servername = "192.168.9.216";
         $database = "moodle";
         $username = "usuariomoodle";

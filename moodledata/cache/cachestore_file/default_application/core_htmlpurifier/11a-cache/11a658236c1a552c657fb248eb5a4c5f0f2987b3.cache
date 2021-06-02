@@ -1,0 +1,1 @@
+s:356:"<strong>Stack trace:</strong> <ul style="text-align:left;"><li>line 498 of /lib/setuplib.php: moodle_exception thrown</li><li>line 315 of /lib/formslib.php: call to print_error()</li><li>line 228 of /lib/formslib.php: call to moodleform-&gt;_process_submission()</li><li>line 54 of /mod/attendance/export.php: call to moodleform-&gt;__construct()</li></ul>";
