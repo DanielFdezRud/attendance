@@ -118,13 +118,11 @@ class updatesession extends \moodleform {
         // CODIGO
         $displaylist = addsession::get_modules();
         $mform->addElement('select', 'module', 'Modul del curs' , $displaylist);
-        $mform->addHelpButton('module', 'coursecategory');
         $mform->addRule('module', 'Falta el modul', 'required', null, 'client');
         $mform->setDefault('module', 'M1');
 
         $displaylist = array('UF1','UF2','UF3','UF4','UF5','UF6','UF7','UF8','UF9','UF10');
         $mform->addElement('select', 'uf', 'Uf del modul' , $displaylist);
-        $mform->addHelpButton('uf', 'coursecategory');
         $mform->addRule('uf', 'Falta la uf', 'required', null, 'client');
         $mform->setDefault('uf', 'UF1');
 
@@ -246,28 +244,4 @@ class updatesession extends \moodleform {
         return $errors;
     }
 
-    function get_modules() {
-        $servername = "192.168.9.216";
-        $database = "moodle";
-        $username = "usuariomoodle";
-        $password = "ira491";
-        $mysqli = new \MySQLi($servername, $username, $password, $database);
-        
-        if ($mysqli->connect_errno) {
-            printf("Conexion fallida: %s\n", $mysqli->connect_error);
-            exit();
-        }
-        $consulta = "SELECT value FROM mdl_config WHERE id = 511";
-        
-        $i = 0;
-        if ($resultado = $mysqli->query($consulta)) {
-            if ($fila = $resultado->fetch_assoc()) {
-                $res = $fila["value"];
-                $arr = json_decode($res,true);
-                return array_values(preg_grep('/^uf[1-9]/i', array_keys($arr['cicle']['DAM']['M6'])));
-            }
-            $resultado->free();
-        }
-        $mysqli->close(); 
-    }
 }

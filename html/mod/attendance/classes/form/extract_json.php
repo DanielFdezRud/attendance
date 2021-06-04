@@ -1,4 +1,10 @@
 <?php
+/**
+ * Returns a array from a JSON on the database.
+ *
+ * @return array
+ */
+
 $servername = "192.168.9.216";
 $database = "moodle";
 $username = "usuariomoodle";
@@ -15,10 +21,6 @@ if ($resultado = $mysqli->query($consulta)) {
         $res = $fila["value"];
         echo json_encode($res);
     }
-    /*if($reg = $resultado->fetch_object()){
-        $data = ['cicles' => $reg->value];
-        echo json_encode($data);
-    }*/
     $resultado->free();
 }
 $mysqli->close();

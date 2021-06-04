@@ -1,3 +1,7 @@
+/**
+ * This file makes the UF selector reload if the selector of modules change.
+ *
+ */
 $(function(){
     $('#id_module').prepend('<option selected disabled hidden></option>');
     $('#id_uf').prop('disabled',true).html('<option selected disabled hidden></option>');
@@ -20,6 +24,10 @@ $(function(){
         data:{idAtt:id},
         success:respuesta
     });
+    /**
+     * This function process the response from the server to get the course.
+     *
+     */
     function respuesta(datos){
         var regex = /asix/i;
         if (datos.match(regex)){
@@ -27,16 +35,20 @@ $(function(){
         }else{
             curso = 'DAM';
         }
-    };
+    }
 
-
+    /**
+     * This function load the ufs from the module selected.
+     */
     function cargarUf(){
         var indiceSeleccionado = this.selectedIndex;
         var opcionSeleccionada = this.options[indiceSeleccionado];
         var texto = opcionSeleccionada.text;
 
         $.getJSON('./classes/form/extract_json.php',pintaUF);
-
+        /**
+         * This function shows the ufs from the module selected.
+         */
         function pintaUF(dades) {
             var res = JSON.parse(dades);
             var ufs = res[curso][texto];
@@ -69,6 +81,9 @@ $(function(){
         }
 
     }
+    /**
+     * This function load a div with module and uf information.
+     */
     function cargarInfo(){
         var select = document.getElementById('id_module');
         var indiceSeleccionadoMod = select.selectedIndex;
@@ -85,7 +100,9 @@ $(function(){
         first = false;
 
         $.getJSON('./classes/form/extract_json.php',pintaInfo);
-
+        /**
+         * This function shows the div with module and uf information.
+         */
         function pintaInfo(dades) {
             var res = JSON.parse(dades);
             if (creado2) {

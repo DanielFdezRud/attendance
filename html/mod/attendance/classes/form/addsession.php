@@ -420,6 +420,11 @@ class addsession extends moodleform
 
         return $found;
     }
+    /**
+     * Returns all modules from a JSON on the database.
+     *
+     * @return array
+     */
     public static function get_modules(){
         $servername = "192.168.9.216";
         $database = "moodle";
@@ -476,6 +481,11 @@ class addsession extends moodleform
         }
         $mysqli->close();
     }
+    /**
+     * Returns the ID of the course.
+     *
+     * @return int
+     */
     function getID(){
         return required_param('id',PARAM_INT);
     }

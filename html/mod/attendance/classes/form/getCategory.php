@@ -1,4 +1,9 @@
 <?php
+/**
+ * Returns the category from a JSON on the database.
+ *
+ * @return array
+ */
 $servername = "192.168.9.216";
 $database = "moodle";
 $username = "usuariomoodle";
